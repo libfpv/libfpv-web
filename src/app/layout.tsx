@@ -37,6 +37,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           {children}
         </ThemeProvider>
+        <script
+          async
+          src="https://ackee.hammerill.com/tracker.js"
+          data-ackee-server="https://ackee.hammerill.com"
+          data-ackee-domain-id="db13ab8d-3252-4e1e-9db2-896f6cf05012"
+          data-ackee-opts='{ "detailed": true }'
+        ></script>
       </body>
     </html>
   );
