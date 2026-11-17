@@ -69,6 +69,11 @@ export default function Footer() {
               </a>
             </li>
             <li>
+              <a href={links.blog} target="_blank" rel="noreferrer" className="transition hover:text-foreground">
+                How libfpv was made
+              </a>
+            </li>
+            <li>
               <a href={links.patreon} target="_blank" rel="noreferrer" className="transition hover:text-foreground">
                 Patreon
               </a>

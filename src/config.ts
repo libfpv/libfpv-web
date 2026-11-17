@@ -6,6 +6,8 @@ export const links = {
   paypal: "https://paypal.me/hammerill",
   github: "https://github.com/hammerill/libfpv",
   author: "https://hammerill.com",
+  /** The story of how libfpv was made. No locale: hammerill.com redirects to the visitor's. */
+  blog: "https://hammerill.com/blog/libfpv",
   social: {
     youtube: "https://youtube.com/@hammerill",
     instagram: "https://instagram.com/hammerill_",

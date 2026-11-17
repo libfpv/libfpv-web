@@ -1,9 +1,10 @@
-import { ArrowUpRight, Check, Plus, Youtube } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, Layers, Plus, Youtube } from "lucide-react";
 
 import { links } from "@/config";
 import { games, type Game } from "@/data/games";
 import { cn } from "@/lib/utils";
 import Reveal from "@/components/reveal";
+import { features } from "@/components/features";
 import GameVideo from "@/components/game-video";
 import { Button } from "@/components/ui/button";
 import { GithubIcon, PatreonIcon } from "@/components/icons";
@@ -32,6 +33,29 @@ function Screen({ game }: { game: Game }) {
   );
 }
 
+/**
+ * Says outright that libfpv's features aren't this game's alone, and names the
+ * ones this mod doesn't have yet, so the list above never reads as the whole story.
+ */
+function SharedFeatures({ game }: { game: Game }) {
+  const missing = features.filter((f) => f.pending?.games.includes(game.id));
+  const names = missing.map((f) => f.pending!.what);
+  return (
+    <div className="mt-5 flex gap-3 rounded-xl border bg-card/50 p-4 text-sm leading-6">
+      <Layers className="mt-0.5 size-5 shrink-0 text-muted-foreground" />
+      <p className="text-muted-foreground">
+        <span className="font-medium text-foreground">Plus the whole libfpv drone</span>, the same as in every
+        other game here: Betaflight, the OSD, the radio setup, presets and more.{" "}
+        {missing.length > 0 && <>Not in this mod yet: {names.join(", ")}. </>}
+        <a href="#features" className="inline-flex items-center gap-1 font-medium text-foreground underline-offset-4 hover:underline">
+          Every feature
+          <ArrowRight className="size-3.5" />
+        </a>
+      </p>
+    </div>
+  );
+}
+
 function GameRow({ game, index }: { game: Game; index: number }) {
   const flipped = index % 2 === 1;
   return (
@@ -39,7 +63,7 @@ function GameRow({ game, index }: { game: Game; index: number }) {
       <div className={cn("grid items-center gap-8 lg:grid-cols-2 lg:gap-16")}>
         <Reveal className={cn(flipped && "lg:order-2")}>
           {game.webBuild ? (
-            <WebBuild url={game.webBuild} title={game.title}>
+            <WebBuild url={game.webBuild} title={game.title} steps={game.webSteps}>
               <Screen game={game} />
             </WebBuild>
           ) : (
@@ -70,7 +94,10 @@ function GameRow({ game, index }: { game: Game; index: number }) {
           <p className="mt-1 text-lg font-medium text-bf">{game.subtitle}</p>
           <p className="mt-4 leading-7 text-muted-foreground">{game.pitch}</p>
 
-          <ul className="mt-5 space-y-2.5">
+          <p className="mt-6 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            What {game.short} brings to it
+          </p>
+          <ul className="mt-3 space-y-2.5">
             {game.highlights.map((h) => (
               <li key={h} className="flex gap-3 leading-6">
                 <Check className="mt-0.5 size-5 shrink-0 text-bf" />
@@ -78,6 +105,8 @@ function GameRow({ game, index }: { game: Game; index: number }) {
               </li>
             ))}
           </ul>
+
+          <SharedFeatures game={game} />
 
           <div className="mt-7 flex flex-wrap gap-3">
             <Button asChild variant="default">
@@ -142,7 +171,7 @@ export default function Games() {
               {games.length} games. <span className="text-muted-foreground">One real quad.</span>
             </>
           }
-          description="The same libfpv drone, with the same Betaflight tune, flies in every one of them. Each mod hooks the game's own world: its collisions, its people, its weather and its police."
+          description="The same libfpv drone, with the same Betaflight tune, flies in every one of them, and its features (further down) are libfpv's, not one game's. What changes is the world: each mod hooks the game's own collisions, people, hazards and police. That's what each game's list shows."
         />
 
         <div className="mt-16 space-y-24 lg:mt-24 lg:space-y-36">

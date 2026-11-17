@@ -51,14 +51,14 @@ function Highlighted({ src }: { src: string }) {
 }
 
 const steps = [
-  { icon: Radio, title: "Your radio", body: "Transmitter, gamepad or keyboard, read through an embedded SDL3." },
-  { icon: Cpu, title: "libfpv", body: "Betaflight + physics on its own 1 kHz thread, colliding with the game's world." },
+  { icon: Radio, title: "Your radio", body: "Transmitter, gamepad or keyboard, read through an embedded SDL3 (the Gamepad API in a browser)." },
+  { icon: Cpu, title: "libfpv", body: "Betaflight + physics stepped at 1 kHz, colliding with the game's world." },
   { icon: MonitorPlay, title: "The game", body: "Gets the drone's pose, cameras, OSD and sound, and draws the frame." },
 ];
 
 const docs = [
   { icon: FileCode2, title: "libfpv.h", body: "The whole API, documented inline", href: links.docs.header },
-  { icon: BookOpen, title: "Integration guide", body: "Hooks, shaders, lessons from GTA IV", href: links.docs.integration },
+  { icon: BookOpen, title: "Integration guide", body: "Hooks, shaders, lessons from real mods", href: links.docs.integration },
   { icon: Globe, title: "Web builds", body: "Compile game + mod to WebAssembly", href: links.docs.web },
   { icon: Package, title: "Publishing", body: "One ZIP or one link for players", href: links.docs.publishing },
 ];

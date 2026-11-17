@@ -156,12 +156,12 @@ export default function Hero({ stars }: { stars: number | null }) {
         </div>
 
         <h1 className="max-w-4xl text-balance text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-7xl">
-          FPV drone in{" "}
-          <span className="bg-gradient-to-r from-white via-amber-200 to-amber-400 bg-clip-text text-transparent">any game</span>
+          FPV Drone in{" "}
+          <span className="bg-gradient-to-r from-white via-amber-200 to-amber-400 bg-clip-text text-transparent">Any Game</span>
         </h1>
         <p className="mt-6 max-w-2xl text-balance text-base text-white/80 sm:text-lg lg:text-xl">
-          Real Betaflight firmware in the games you already love. libfpv puts an FPV drone
-          into Mario, GTA, Portal and more.{" "}
+          Real Betaflight firmware flying across the games you know well. libfpv puts an&nbsp;FPV drone
+          into Mario, GTA, Portal and any other 3D game you can imagine.{" "}
           <span className="font-semibold text-white">Free and open source.</span>
         </p>
 
@@ -182,7 +182,7 @@ export default function Hero({ stars }: { stars: number | null }) {
           <Button asChild size="lg" variant="patreon">
             <a href="#support">
               <PatreonIcon />
-              Support on Patreon
+              Support us
             </a>
           </Button>
         </div>
@@ -199,7 +199,7 @@ export default function Hero({ stars }: { stars: number | null }) {
                 onClick={() => !active && switchTo(i)}
                 className={cn(
                   "rounded-full border px-3 py-1 font-osd text-base uppercase tracking-wider transition",
-                  active ? "border-white bg-white text-black" : "border-white/25 bg-black/30 text-white/70 hover:border-white/60 hover:text-white",
+                  active ? "border-white/75 bg-white/75 text-black" : "border-white/25 bg-black/30 text-white/70 hover:border-white/60 hover:text-white",
                 )}
               >
                 {g.channel} · {g.title}

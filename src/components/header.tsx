@@ -6,7 +6,7 @@ import Image from "next/image";
 import { links } from "@/config";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { GithubIcon, PatreonIcon } from "@/components/icons";
+import { GithubIcon } from "@/components/icons";
 import ThemeToggle from "@/components/theme-toggle";
 import StarCount from "@/components/star-count";
 
@@ -86,12 +86,6 @@ export default function Header({ stars }: { stars: number | null }) {
           <div className={cn(!scrolled && "[&_button:hover]:bg-white/10 [&_button:hover]:text-white")}>
             <ThemeToggle />
           </div>
-          <Button asChild variant="patreon" size="sm" className="ml-1 hidden sm:inline-flex">
-            <a href={links.patreon} target="_blank" rel="noreferrer">
-              <PatreonIcon />
-              Support
-            </a>
-          </Button>
         </div>
       </div>
     </header>

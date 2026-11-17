@@ -1,4 +1,4 @@
-import { ArrowUpRight, GitFork, Heart, Scale, Code2 } from "lucide-react";
+import { ArrowUpRight, BookOpen, GitFork, Heart, Scale, Code2 } from "lucide-react";
 
 import { links } from "@/config";
 import Reveal from "@/components/reveal";
@@ -20,7 +20,7 @@ const points = [
   {
     icon: Scale,
     title: "GPL-3.0, with MIT parts",
-    body: "The library is GPL-3.0-or-later. The C API header, client code, renderers and examples are also MIT, so an integration can use any license, open or closed.",
+    body: "libfpv embeds Betaflight, so it is GPL-3.0-or-later, and a mod that ships it is too. The header, client code, renderers and examples are also MIT: with a split build, where the simulation runs as a separate program, the mod's own code can use other terms.",
   },
   {
     icon: GitFork,
@@ -62,6 +62,13 @@ export default function OpenSource({ stars }: { stars: number | null }) {
                   <Button asChild size="lg" variant="outline">
                     <a href={`${links.github}/issues`} target="_blank" rel="noreferrer">
                       Report an issue
+                    </a>
+                  </Button>
+                  <Button asChild size="lg" variant="ghost">
+                    <a href={links.blog} target="_blank" rel="noreferrer">
+                      <BookOpen />
+                      How libfpv was made
+                      <ArrowUpRight />
                     </a>
                   </Button>
                 </div>

@@ -46,7 +46,7 @@ export default function Support() {
               Keep the props spinning.
             </>
           }
-          description="libfpv is a 100% open source and free project, built by one developer. If it made you smile, put your quad through a Liberty City window, or saved your mod weeks of work, consider chipping in."
+          description="libfpv is a 100% open source and free project built by one&nbsp;person with the help of the whole open source community. If it made you smile, put your quad through a Liberty City window, or saved your mod weeks of work, consider chipping in."
         />
 
         <div className="mx-auto mt-16 grid max-w-6xl gap-6 lg:grid-cols-[1.5fr_1fr]">
