@@ -16,6 +16,8 @@ export type Game = {
   channel: string;
   /** A playable web build (WASM), embedded in the game's slot on click. */
   webBuild?: string;
+  /** Media used in the hero carousel instead of `media` (e.g. a pre-trimmed copy). */
+  heroMedia?: string;
   /** Seconds to skip at the start of the clip in the hero carousel. */
   heroStart?: number;
 };
@@ -40,7 +42,7 @@ export const games: Game[] = [
       "Analog goggle feed: snow, torn lines and colour loss with range",
     ],
     channel: "R1",
-    heroStart: 3,
+    heroMedia: "sm64-hero",
     webBuild: "https://sm64ex-fpv.hammerill.com",
   },
   {

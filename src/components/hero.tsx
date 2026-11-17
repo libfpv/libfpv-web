@@ -55,6 +55,7 @@ export default function Hero({ stars }: { stars: number | null }) {
 
   const current = games[idx];
   const start = current.heroStart ?? 0;
+  const media = current.heroMedia ?? current.media;
 
   // Clips with a heroStart skip their first seconds, also when they loop.
   const seekToStart = (v: HTMLVideoElement) => {
@@ -71,7 +72,7 @@ export default function Hero({ stars }: { stars: number | null }) {
       <div className="absolute inset-0 -z-20">
         <video
           key={current.id}
-          className="h-full w-full scale-105 object-cover opacity-70 blur-[1.5px] saturate-[1.15]"
+          className="h-full w-full scale-105 object-cover opacity-55 blur-[1.5px] saturate-[1.15]"
           autoPlay
           muted
           loop={start === 0}
@@ -81,16 +82,16 @@ export default function Hero({ stars }: { stars: number | null }) {
             e.currentTarget.currentTime = start;
             void e.currentTarget.play();
           }}
-          poster={`/games/${current.media}.jpg`}
+          poster={`/games/${media}.jpg`}
         >
-          <source src={`/games/${current.media}.webm`} type="video/webm" />
-          <source src={`/games/${current.media}.mp4`} type="video/mp4" />
+          <source src={`/games/${media}.webm`} type="video/webm" />
+          <source src={`/games/${media}.mp4`} type="video/mp4" />
         </video>
       </div>
 
       {/* goggles: noise, scanlines, rolling line, vignette, darkening */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/45 to-black/85" />
         <div className="scanlines absolute inset-0 opacity-60" />
         <div className="noise absolute -inset-[10%] animate-noise-shift opacity-[0.07] mix-blend-screen" />
         <div className="absolute inset-x-0 top-0 h-10 animate-roll-line bg-gradient-to-b from-transparent via-white/[0.06] to-transparent" />
@@ -159,8 +160,8 @@ export default function Hero({ stars }: { stars: number | null }) {
           <span className="bg-gradient-to-r from-white via-amber-200 to-amber-400 bg-clip-text text-transparent">any game</span>
         </h1>
         <p className="mt-6 max-w-2xl text-balance text-base text-white/80 sm:text-lg lg:text-xl">
-          Real Betaflight firmware, your own radio, and the games you already love. libfpv drops a
-          true-to-life quadcopter into Mario, GTA, Portal and more.{" "}
+          Real Betaflight firmware in the games you already love. libfpv puts an FPV drone
+          into Mario, GTA, Portal and more.{" "}
           <span className="font-semibold text-white">Free and open source.</span>
         </p>
 
