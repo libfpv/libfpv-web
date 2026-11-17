@@ -157,10 +157,10 @@ export default function Hero({ stars }: { stars: number | null }) {
 
         <h1 className="max-w-4xl text-balance text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-7xl">
           FPV Drone in{" "}
-          <span className="bg-gradient-to-r from-white via-amber-200 to-amber-400 bg-clip-text text-transparent">Any Game</span>
+          <span className="bg-gradient-to-r from-white via-amber-200 to-amber-300 bg-clip-text text-transparent">Any Game</span>
         </h1>
         <p className="mt-6 max-w-2xl text-balance text-base text-white/80 sm:text-lg lg:text-xl">
-          Real Betaflight firmware flying across the games you know well. libfpv puts an&nbsp;FPV drone
+          Real Betaflight firmware flying across the games you know&nbsp;well. libfpv puts an&nbsp;FPV drone
           into Mario, GTA, Portal and any other 3D game you can imagine.{" "}
           <span className="font-semibold text-white">Free and open source.</span>
         </p>
