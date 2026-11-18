@@ -8,9 +8,12 @@ import OpenSource from "@/components/open-source";
 import Modders from "@/components/modders";
 import Support from "@/components/support";
 import Footer from "@/components/footer";
+import { setRequestLocale } from "next-intl/server";
+
 import { getStars } from "@/lib/github";
 
-export default async function Home() {
+export default async function Home({ params: { locale } }: { params: { locale: string } }) {
+  setRequestLocale(locale);
   const stars = await getStars();
 
   return (

@@ -2,6 +2,7 @@
 
 import { useState, type ReactNode } from "react";
 import { ChevronRight, Expand, Play } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 type Step = { keys: string[]; text: string };
 
@@ -11,10 +12,11 @@ type Step = { keys: string[]; text: string };
  * that F7 is what launches the drone.
  */
 function Steps({ steps }: { steps: Step[] }) {
+  const t = useTranslations("webBuild");
   return (
     <div
       role="note"
-      aria-label="How to start flying"
+      aria-label={t("howTo")}
       className="relative -mt-4 flex flex-wrap items-center justify-center gap-x-2 gap-y-1.5 rounded-b-2xl border border-t-0 bg-card px-4 pb-2.5 pt-6 text-sm text-muted-foreground shadow-sm"
     >
       {steps.map((s, i) => {
@@ -30,7 +32,7 @@ function Steps({ steps }: { steps: Step[] }) {
                   (launch ? "border-bf/60 bg-bf/15 font-bold" : "bg-background font-semibold")
                 }
               >
-                {k}
+                {t.has(`keys.${k}`) ? t(`keys.${k}`) : k}
               </kbd>
             ))}
             <span className={launch ? "font-semibold text-foreground" : undefined}>{s.text}</span>
@@ -57,12 +59,13 @@ export default function WebBuild({
   children: ReactNode;
 }) {
   const [playing, setPlaying] = useState(false);
+  const t = useTranslations("webBuild");
 
   const media = playing ? (
     <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-black shadow-2xl ring-1 ring-black/10 dark:ring-white/10">
       <iframe
         src={url}
-        title={`${title} with libfpv, in the browser`}
+        title={t("iframe", { game: title })}
         className="absolute inset-0 h-full w-full"
         allow="fullscreen; gamepad; autoplay"
         allowFullScreen
@@ -74,7 +77,7 @@ export default function WebBuild({
         className="absolute right-3 top-3 flex items-center gap-1.5 rounded-full bg-black/60 px-3 py-1.5 text-xs font-medium text-white backdrop-blur transition hover:bg-black/80"
       >
         <Expand className="size-3.5" />
-        Full screen
+        {t("fullScreen")}
       </a>
     </div>
   ) : (
@@ -84,13 +87,13 @@ export default function WebBuild({
         type="button"
         onClick={() => setPlaying(true)}
         className="group/play absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 rounded-2xl text-white"
-        aria-label={`Play ${title} with libfpv in your browser`}
+        aria-label={t("playLabel", { game: title })}
       >
         <span className="flex size-20 items-center justify-center rounded-full bg-white text-black shadow-2xl transition duration-300 group-hover/play:scale-110">
           <Play className="ml-1 size-9 fill-current" />
         </span>
         <span className="rounded-full bg-black/60 px-4 py-1.5 text-sm font-semibold backdrop-blur">
-          Play it right here, in your browser
+          {t("play")}
         </span>
       </button>
     </div>

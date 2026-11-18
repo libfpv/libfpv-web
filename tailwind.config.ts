@@ -12,7 +12,8 @@ const config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
-        osd: ["var(--font-osd)", "ui-monospace", "monospace"],
+        // VT323 has no Cyrillic: those letters fall back to JetBrains Mono.
+        osd: ["var(--font-osd)", "var(--font-mono)", "ui-monospace", "monospace"],
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       colors: {

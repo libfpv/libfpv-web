@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { links } from "@/config";
 import { cn } from "@/lib/utils";
@@ -6,52 +7,54 @@ import Reveal from "@/components/reveal";
 import GameVideo from "@/components/game-video";
 import SectionHeading from "@/components/section-heading";
 import { InstagramIcon, TiktokIcon, YoutubeIcon } from "@/components/icons";
+import { tags } from "@/lib/rich";
 
 const channels = [
   {
+    id: "youtube",
     name: "YouTube",
     handle: "@hammerill",
     href: links.social.youtube,
     icon: YoutubeIcon,
     media: "gtasa",
     game: "GTA San Andreas",
-    cta: "Subscribe",
     badge: "bg-[#FF0000]",
     glow: "shadow-[0_2rem_5rem_-2rem_rgba(255,0,0,0.45)]",
   },
   {
+    id: "instagram",
     name: "Instagram",
     handle: "@hammerill_",
     href: links.social.instagram,
     icon: InstagramIcon,
     media: "sm64",
     game: "Super Mario 64",
-    cta: "Follow",
     badge: "bg-gradient-to-tr from-[#FEDA75] via-[#D62976] to-[#4F5BD5]",
     glow: "shadow-[0_2rem_5rem_-2rem_rgba(214,41,118,0.5)]",
   },
   {
+    id: "tiktok",
     name: "TikTok",
     handle: "@hammerill_",
     href: links.social.tiktok,
     icon: TiktokIcon,
     media: "portal2",
     game: "Portal 2",
-    cta: "Follow",
     badge: "bg-black ring-1 ring-white/20 [box-shadow:-2px_-2px_0_#25F4EE,2px_2px_0_#FE2C55]",
     glow: "shadow-[0_2rem_5rem_-2rem_rgba(37,244,238,0.4)]",
   },
 ];
 
 export default function Social() {
+  const t = useTranslations("social");
   return (
     <section id="social" className="relative scroll-mt-16 overflow-hidden py-24 lg:py-32">
       <div className="glow-blob left-1/2 top-40 h-[30rem] w-[50rem] -translate-x-1/2 opacity-60" />
       <div className="container">
         <SectionHeading
-          eyebrow="Watch the flights"
-          title="Short clips from every game."
-          description="New mods, new tricks, and a lot of crashes into famous buildings. Short videos of libfpv in games go up on YouTube, Instagram and TikTok first."
+          eyebrow={t("eyebrow")}
+          title={t.rich("title", tags)}
+          description={t.rich("description", tags)}
         />
 
         <div className="-mx-4 mt-16 flex snap-x snap-mandatory gap-5 overflow-x-auto px-[15%] pb-8 pt-8 [scrollbar-width:none] sm:mx-auto sm:grid sm:max-w-5xl sm:grid-cols-3 sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0 lg:gap-10">
@@ -81,8 +84,10 @@ export default function Social() {
                     </div>
                     <div className="mt-3 flex items-center justify-center gap-1.5 rounded-full bg-white py-2 text-sm font-semibold text-black transition group-hover:bg-white/90">
                       <span className="whitespace-nowrap">
-                        {c.cta}
-                        <span className="hidden lg:inline"> on {c.name}</span>
+                        {t.rich(`cta.${c.id}`, {
+                          ...tags,
+                          wide: (chunks) => <span className="hidden lg:inline">{chunks}</span>,
+                        })}
                       </span>
                       <ArrowUpRight className="size-4 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                     </div>

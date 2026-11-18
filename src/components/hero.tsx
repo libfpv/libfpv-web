@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { ArrowDown, Play } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { links } from "@/config";
 import { games } from "@/data/games";
@@ -11,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { GithubIcon, PatreonIcon } from "@/components/icons";
 import StarCount from "@/components/star-count";
 import Osd, { SYM } from "@/components/osd";
+import { tags } from "@/lib/rich";
 
 const CYCLE_MS = 10000;
 const STATIC_MS = 380;
@@ -25,6 +27,7 @@ function pad(n: number) {
  * between games like switching VTX channels.
  */
 export default function Hero({ stars }: { stars: number | null }) {
+  const t = useTranslations("hero");
   const [idx, setIdx] = useState(0);
   const [staticBurst, setStaticBurst] = useState(false);
   const [seconds, setSeconds] = useState(0);
@@ -156,39 +159,41 @@ export default function Hero({ stars }: { stars: number | null }) {
         </div>
 
         <h1 className="max-w-4xl text-balance text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-7xl">
-          FPV Drone in{" "}
-          <span className="bg-gradient-to-r from-white via-amber-200 to-amber-300 bg-clip-text text-transparent">Any Game</span>
+          {t.rich("title", {
+            ...tags,
+            accent: (chunks) => (
+              <span className="bg-gradient-to-r from-white via-amber-200 to-amber-300 bg-clip-text text-transparent">{chunks}</span>
+            ),
+          })}
         </h1>
         <p className="mt-6 max-w-2xl text-balance text-base text-white/80 sm:text-lg lg:text-xl">
-          Real Betaflight firmware flying across the games you know&nbsp;well. libfpv puts an&nbsp;FPV drone
-          into Mario, GTA, Portal and any other 3D game you can imagine.{" "}
-          <span className="font-semibold text-white">Free and open source.</span>
+          {t.rich("lead", { ...tags, b: (chunks) => <span className="font-semibold text-white">{chunks}</span> })}
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
           <Button asChild size="lg" className="bg-white text-black hover:bg-white/90">
             <a href="#games">
               <Play className="fill-current" />
-              Watch it fly
+              {t("watch")}
             </a>
           </Button>
           <Button asChild size="lg" variant="glass">
             <a href={links.github} target="_blank" rel="noreferrer">
               <GithubIcon className="size-5" />
-              Source on GitHub
+              {t("source")}
               <StarCount stars={stars} className="bg-white/15" />
             </a>
           </Button>
           <Button asChild size="lg" variant="patreon">
             <a href="#support">
               <PatreonIcon />
-              Support us
+              {t("support")}
             </a>
           </Button>
         </div>
 
         {/* channels */}
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-2" role="tablist" aria-label="Game feed">
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-2" role="tablist" aria-label={t("feed")}>
           {games.map((g, i) => {
             const active = g.id === current.id;
             return (
@@ -211,7 +216,7 @@ export default function Hero({ stars }: { stars: number | null }) {
 
       <a
         href="#games"
-        aria-label="Scroll to games"
+        aria-label={t("scroll")}
         className="absolute bottom-24 left-1/2 hidden -translate-x-1/2 animate-float text-white/60 transition hover:text-white sm:block md:bottom-8"
       >
         <ArrowDown className="size-6" />

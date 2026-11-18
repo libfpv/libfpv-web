@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 import { links } from "@/config";
 import { cn } from "@/lib/utils";
@@ -9,15 +10,17 @@ import { Button } from "@/components/ui/button";
 import { GithubIcon } from "@/components/icons";
 import ThemeToggle from "@/components/theme-toggle";
 import StarCount from "@/components/star-count";
+import LanguageSwitcher from "@/components/language-switcher";
 
 const nav = [
-  { href: "#games", label: "Games" },
-  { href: "#features", label: "Features" },
-  { href: "#modders", label: "For modders" },
-  { href: "#support", label: "Support" },
-];
+  { href: "#games", label: "games" },
+  { href: "#features", label: "features" },
+  { href: "#modders", label: "modders" },
+  { href: "#support", label: "support" },
+] as const;
 
 export default function Header({ stars }: { stars: number | null }) {
+  const t = useTranslations("header");
   // Over the hero the header floats transparent on the video; it gets its
   // blurred background once the page scrolls.
   const [scrolled, setScrolled] = useState(false);
@@ -41,7 +44,7 @@ export default function Header({ stars }: { stars: number | null }) {
             "flex items-center transition-opacity duration-300",
             !scrolled && "pointer-events-none opacity-0",
           )}
-          aria-label="libfpv home"
+          aria-label={t("home")}
           aria-hidden={!scrolled}
           tabIndex={scrolled ? undefined : -1}>
           <Image
@@ -66,7 +69,7 @@ export default function Header({ stars }: { stars: number | null }) {
                   : "text-white/80 hover:bg-white/10 hover:text-white",
               )}
             >
-              {item.label}
+              {t(item.label)}
             </a>
           ))}
         </nav>
@@ -75,7 +78,7 @@ export default function Header({ stars }: { stars: number | null }) {
           <Button
             asChild
             variant="ghost"
-            aria-label="libfpv on GitHub"
+            aria-label={t("github")}
             className={cn("h-10 gap-1.5 px-3", !scrolled && "hover:bg-white/10 hover:text-white")}
           >
             <a href={links.github} target="_blank" rel="noreferrer">
@@ -83,7 +86,8 @@ export default function Header({ stars }: { stars: number | null }) {
               <StarCount stars={stars} className={cn("ml-0", !scrolled && "bg-white/15")} />
             </a>
           </Button>
-          <div className={cn(!scrolled && "[&_button:hover]:bg-white/10 [&_button:hover]:text-white")}>
+          <div className={cn("flex items-center gap-1", !scrolled && "[&_button:hover]:bg-white/10 [&_button:hover]:text-white")}>
+            <LanguageSwitcher />
             <ThemeToggle />
           </div>
         </div>

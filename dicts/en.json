@@ -1,0 +1,309 @@
+{
+  "metadata": {
+    "title": "libfpv: FPV drone in any game",
+    "description": "libfpv drops a real FPV quadcopter, running real Betaflight firmware, into any game: Super Mario 64, GTA IV, GTA San Andreas, Vice City, Portal 2 and more. Free and open source.",
+    "keywords": "libfpv, FPV, drone, quadcopter, Betaflight, game mod, GTA, Mario 64, Portal 2, open source",
+    "ogAlt": "GTA San Andreas FPV"
+  },
+  "header": {
+    "games": "Games",
+    "features": "Features",
+    "modders": "For modders",
+    "support": "Support",
+    "home": "libfpv home",
+    "github": "libfpv on GitHub",
+    "theme": "Toggle theme",
+    "language": "Language"
+  },
+  "stars": "{count, plural, one {# star} other {# stars}} on GitHub",
+  "hero": {
+    "title": "FPV Drone in <accent>Any Game</accent>",
+    "lead": "Real Betaflight firmware flying across the games you know<nbsp></nbsp>well. libfpv puts an<nbsp></nbsp>FPV drone into Mario, GTA, Portal and any other 3D game you can imagine. <b>Free and open source.</b>",
+    "watch": "Watch it fly",
+    "source": "Source on GitHub",
+    "support": "Support us",
+    "feed": "Game feed",
+    "scroll": "Scroll to games"
+  },
+  "stats": {
+    "openSource": "open source & free",
+    "betaflight": "real Betaflight firmware",
+    "loop": "simulation loop",
+    "games": "{count, plural, one {game} other {games}} and counting"
+  },
+  "games": {
+    "eyebrow": "Compatible games",
+    "title": "{count, plural, one {# game} other {# games}}. <muted>One real quad.</muted>",
+    "description": "The same libfpv drone, with the same Betaflight tune, flies in every one of them, and its features (further down) are libfpv's, not one game's. What changes is the world: each mod hooks the game's own collisions, people, hazards and police. That's what each game's list shows.",
+    "playable": "Playable",
+    "inDevelopment": "In development",
+    "brings": "What {game} brings to it",
+    "shared": "<strong>Plus the whole libfpv drone</strong>, the same as in every other game here: Betaflight, the OSD, the radio setup, presets and more.",
+    "missing": "Not in this mod yet: {list}.",
+    "everyFeature": "Every feature",
+    "get": "Get {repo}",
+    "watchVideo": "Watch the video",
+    "clip": "{game} with libfpv: gameplay clip",
+    "platforms": {
+      "sm64ex port": "sm64ex port",
+      "Browser": "Browser"
+    },
+    "next": {
+      "title": "Your game next?",
+      "body": "Every game here is a mod built on libfpv, and the list keeps growing. Patrons get a place in the priority queue for picking which game gets a drone next, and they play it first.",
+      "request": "Request a game on Patreon",
+      "modYourself": "Or mod it yourself"
+    }
+  },
+  "gameData": {
+    "sm64": {
+      "subtitle": "Mario has a drone now",
+      "pitch": "Mario deploys a quad and stays behind as the pilot. Fly the castle grounds and every painting's world at real scale, where Mario is 1.6<nbsp></nbsp>m tall.",
+      "highlights": [
+        "Fly through coins, stars, keys and 1-ups to collect them; a star ends the flight with Mario's dance",
+        "Ram Goombas, Koopas, Bullies and Bob-ombs to knock them out",
+        "Each level has its own breeze, and Fwooshes blow the drone away as they blow Mario",
+        "Lava, flames, Amps and Bob-omb blasts break the props"
+      ],
+      "steps": ["load a save", "wait for Mario", "launch the drone"]
+    },
+    "gtaiv": {
+      "subtitle": "Liberty City from above",
+      "pitch": "Niko launches a quad from the street in front of him. Dive between Liberty City's skyscrapers and chase traffic down its avenues.",
+      "highlights": [
+        "Collides with buildings, cars, peds and props through the engine's own physics probe",
+        "A fast hit ragdolls a ped, dents a car or shoves a prop",
+        "Liberty City streams in around the drone wherever you fly"
+      ]
+    },
+    "gtasa": {
+      "subtitle": "From Grove Street to Las Venturas",
+      "pitch": "CJ launches a quad from the ground in front of him. Fly over Grove Street, out across the desert and between the casinos of Las Venturas.",
+      "highlights": [
+        "Gangs, peds and the police react to the drone; with a wanted level, the cops shoot at it",
+        "Rain and sandstorms blow hard, police helicopters push you down, explosions shove you",
+        "Bullets, molotov fires, water and helicopter rotors break the props",
+        "Fly through a replay (F1, F3) or a world frozen by a photo mod"
+      ]
+    },
+    "revc": {
+      "subtitle": "Native on Apple Silicon Macs",
+      "pitch": "A plugin for the macOS recompilation of Vice City. Tommy launches a quad from the ground and the neon city opens up below it. Self-contained: nothing else to install.",
+      "highlights": [
+        "The drone picks up Vice City's pickups and flies through doors into its interiors",
+        "Peds and the police react to it as they would to Tommy",
+        "A fast hit hurts a ped as if Tommy rammed them, or dents a car",
+        "Runs next to Hammerill Trainer: both load from the same launcher"
+      ]
+    },
+    "portal2": {
+      "subtitle": "The drone is the portal gun",
+      "pitch": "Solve Aperture's test chambers by quad. Fire portals from the camera, dive into a floor portal and come out of a wall with all your momentum.",
+      "highlights": [
+        "Press pedestal buttons from the air, and doors open for the drone",
+        "Hook a cube under the drone on a winch line and lower it onto a button",
+        "Turrets shoot at the drone, lasers burn its props, goo drowns it",
+        "Faith plates launch it, excursion funnels carry it, fizzlers fizzle it"
+      ]
+    }
+  },
+  "webBuild": {
+    "play": "Play it right here, in your browser",
+    "playLabel": "Play {game} with libfpv in your browser",
+    "iframe": "{game} with libfpv, in the browser",
+    "fullScreen": "Full screen",
+    "howTo": "How to start flying",
+    "keys": {
+      "Space": "Space"
+    }
+  },
+  "features": {
+    "eyebrow": "In every game",
+    "title": "It flies like the real thing. Because it is.",
+    "description": "These are libfpv's features, not one game's. Every libfpv mod ships the same FPV simulator inside, so what you see in one game's clip works in the others too. Press F8 in any of them to open the overlay: radio setup, rates, tuning, OSD, camera, the Betaflight CLI.",
+    "pending": "{what}: not in {games} yet",
+    "items": {
+      "betaflight": {
+        "title": "Betaflight in the loop",
+        "body": "Not a lookalike: the real Betaflight 2025.12 runs inside the game through SimITL. Rates, modes, filters, arming, air mode and turtle mode behave as on your quad, so the habits carry over to the real one. Paste a diff all from your drone, or connect Betaflight Configurator (desktop builds)."
+      },
+      "radio": {
+        "title": "Your radio, your gamepad",
+        "body": "Plug in your transmitter in USB joystick mode. A setup wizard maps arm, angle, beeper, turtle, air mode and OSD disable. Mods can put the game's own actions on your switches too. Gamepad and keyboard work as well."
+      },
+      "stand-in": {
+        "title": "The world treats the drone as you",
+        "body": "Your character launches the drone and stays at the piloting spot, radio in hand. Fly away and the game plays against the drone as if it were the player: enemies and police go after it, doors, pickups and triggers react to it, and the map loads around it. On by default, off in F8.",
+        "pending": "the stand-in"
+      },
+      "pilot-view": {
+        "title": "Back to the pilot",
+        "body": "F gives you the character back while the drone stays in the world, still flown by the radio. F7 returns to it, and Y puts the character right under the drone.",
+        "pending": "the pilot view (F)"
+      },
+      "video": {
+        "title": "A real goggle feed",
+        "body": "Fisheye lens and uptilt everywhere. Mods that draw libfpv's video feed add a 5.8<nbsp></nbsp>GHz link budget: snow, sparkles, torn lines and colour loss with range, walls and crashes, at the camera's own resolution and aspect. Digital links break up and freeze.",
+        "pending": "the video feed"
+      },
+      "wind": {
+        "title": "Wind that fights back",
+        "body": "The game's weather becomes real wind: gustier up high, calm behind buildings and indoors, with rotor downwash and blast waves. Betaflight has to hold the quad against it.",
+        "pending": "wind"
+      },
+      "damage": {
+        "title": "Props break like real ones",
+        "body": "Hard crashes break props and burn motors, and whatever would hurt the character (fire, water, bullets, explosions) breaks the props too. Damage can be turned off.",
+        "pending": "damage from the game's hazards"
+      },
+      "presets": {
+        "title": "Physics presets",
+        "body": "From a BetaFPV Air65 tiny whoop to a 7\" long-range cruiser. Frame, motors, props, battery, VTX and camera are presets, with real cameras like the Caddx Ratel 2 and HDZero Nano 90."
+      },
+      "osd": {
+        "title": "Full OSD with GPS",
+        "body": "Betaflight's own MAX7456 fonts, analog or HD. Speed, altitude, vario, distance and a home arrow pointing back to your character."
+      },
+      "sound": {
+        "title": "Motor sound",
+        "body": "Synthesized motors and beeper. Heard from the pilot, the drone gets quieter far away and behind walls, with Doppler and echoes.",
+        "pending": "hearing the drone from the pilot"
+      },
+      "rc-link": {
+        "title": "An ExpressLRS link",
+        "body": "Optional: packets drop with range and walls, Betaflight shows RXLOSS and goes into failsafe, with LQ and RSSI on the OSD."
+      },
+      "shared": {
+        "title": "One setup for every game",
+        "body": "Radio mappings, your Betaflight tune and settings live in one shared folder, so they follow you from game to game.",
+        "pending": "the shared setup folder"
+      },
+      "portals": {
+        "title": "Portals, pushes and cargo",
+        "body": "For games that have them: fly through linked portals with your momentum, get launched by pads, and carry things under the drone with their weight."
+      },
+      "web": {
+        "title": "Fly from a link",
+        "body": "A game with source available can ship its mod as a web page: game and libfpv compiled to WebAssembly, radio included. Nothing to install."
+      }
+    }
+  },
+  "social": {
+    "eyebrow": "Watch the flights",
+    "title": "Short clips from every game.",
+    "description": "New mods, new tricks, and a lot of crashes into famous buildings. Short videos of libfpv in games go up on YouTube, Instagram and TikTok first.",
+    "cta": {
+      "youtube": "Subscribe<wide> on YouTube</wide>",
+      "instagram": "Follow<wide> on Instagram</wide>",
+      "tiktok": "Follow<wide> on TikTok</wide>"
+    }
+  },
+  "openSource": {
+    "eyebrow": "Open source",
+    "title": "Made in the open, for the modding community.",
+    "body": "libfpv is 100% open source and free. FPV pilots get to fly through the worlds they grew up with, and modders get a ready drone instead of writing a flight model from scratch. Read the code, file an issue, send a pull request, or build a mod of your own.",
+    "issue": "Report an issue",
+    "blog": "How libfpv was made",
+    "points": {
+      "free": {
+        "title": "libfpv stays free",
+        "body": "The simulator itself is 100% open source and free, and it will stay that way. No paywall, no locked features."
+      },
+      "github": {
+        "title": "Every line on GitHub",
+        "body": "The library and its patches to Betaflight and SimITL are public. So are all of today's game mods."
+      },
+      "license": {
+        "title": "GPL-3.0, with MIT parts",
+        "body": "libfpv embeds Betaflight, so it is GPL-3.0-or-later, and a mod that ships it is too. The header, client code, renderers and examples are also MIT: with a split build, where the simulation runs as a separate program, the mod's own code can use other terms."
+      },
+      "integration": {
+        "title": "Open to every integration",
+        "body": "A plain C API, documented inline, loads from any engine or mod loader. Bring a drone to your favourite game, and share it however you like."
+      }
+    }
+  },
+  "modders": {
+    "eyebrow": "For modders",
+    "title": "Give your favourite game a drone.",
+    "description": "libfpv has no renderer of its own and a plain C API, so it loads from any engine or mod loader. The game supplies collision and draws the result; libfpv does everything else.",
+    "steps": {
+      "radio": {
+        "title": "Your radio",
+        "body": "Transmitter, gamepad or keyboard, read through an embedded SDL3 (the Gamepad API in a browser)."
+      },
+      "libfpv": {
+        "title": "libfpv",
+        "body": "Betaflight + physics stepped at 1<nbsp></nbsp>kHz, colliding with the game's world."
+      },
+      "game": {
+        "title": "The game",
+        "body": "Gets the drone's pose, cameras, OSD and sound, and draws the frame."
+      }
+    },
+    "docs": {
+      "header": {
+        "title": "libfpv.h",
+        "body": "The whole API, documented inline"
+      },
+      "integration": {
+        "title": "Integration guide",
+        "body": "Hooks, shaders, lessons from real mods"
+      },
+      "web": {
+        "title": "Web builds",
+        "body": "Compile game + mod to WebAssembly"
+      },
+      "publishing": {
+        "title": "Publishing",
+        "body": "One ZIP or one link for players"
+      }
+    }
+  },
+  "support": {
+    "eyebrow": "Support the project",
+    "title": "Keep the props spinning.",
+    "description": "libfpv is a 100% open source and free project built by one<nbsp></nbsp>person with the help of the whole open source community. If it made you smile, put your quad through a Liberty City window, or saved your mod weeks of work, consider chipping in.",
+    "monthly": "Monthly",
+    "patron": "Become a patron",
+    "impact": "Most impact",
+    "subscribe": "Subscribe on Patreon",
+    "scan": "Or scan the code from your phone.",
+    "oneTime": "One time",
+    "props": "Buy a set of props",
+    "oneTimeBody": "Not into subscriptions? A single donation through PayPal goes straight into development time and new games.",
+    "checks": ["No account on Patreon needed", "Any amount helps", "Goes straight into new mods"],
+    "paypal": "Donate with PayPal",
+    "paypalSoon": "PayPal link coming soon",
+    "footnote": "libfpv itself stays free and open source no matter what. Support pays for development time, not for access to the simulator.",
+    "perks": {
+      "kamikaze": {
+        "title": "The Kamikaze version of the mods",
+        "body": "Bomb switches and safety features, detonation on impact or on a button, and different views of the explosion.",
+        "note": "Not designed for military use."
+      },
+      "early": {
+        "title": "Early access to new FPV mods",
+        "body": "Fly the drone mods for other games before anyone else."
+      },
+      "queue": {
+        "title": "The priority queue",
+        "body": "Your say comes first when the next game to mod is picked."
+      },
+      "more": {
+        "title": "More games, better drone",
+        "body": "Your contribution helps libfpv thrive and get integrated into more video games."
+      }
+    }
+  },
+  "footer": {
+    "about": "A drop-in FPV quadcopter for any game, with real Betaflight firmware in the loop. Free and open source under GPL-3.0-or-later.",
+    "games": "Games",
+    "project": "Project",
+    "source": "Source code",
+    "integration": "Integration guide",
+    "blog": "How libfpv was made",
+    "license": "© {year} Hammerill. libfpv is GPL-3.0-or-later.",
+    "disclaimer": "Not affiliated with Betaflight or any game publisher. Game names and footage belong to their owners."
+  }
+}

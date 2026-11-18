@@ -1,8 +1,10 @@
 import { ArrowRight, BookOpen, FileCode2, Globe, Package, Radio, Cpu, MonitorPlay } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { links } from "@/config";
 import Reveal from "@/components/reveal";
 import SectionHeading from "@/components/section-heading";
+import { tags } from "@/lib/rich";
 
 const code = `fpv_global_config cfg;
 fpv_global_config_defaults(&cfg);
@@ -50,40 +52,42 @@ function Highlighted({ src }: { src: string }) {
   return <>{out}</>;
 }
 
+// Text: modders.steps.<id> and modders.docs.<id> in dicts/<locale>.json.
 const steps = [
-  { icon: Radio, title: "Your radio", body: "Transmitter, gamepad or keyboard, read through an embedded SDL3 (the Gamepad API in a browser)." },
-  { icon: Cpu, title: "libfpv", body: "Betaflight + physics stepped at 1 kHz, colliding with the game's world." },
-  { icon: MonitorPlay, title: "The game", body: "Gets the drone's pose, cameras, OSD and sound, and draws the frame." },
+  { id: "radio", icon: Radio },
+  { id: "libfpv", icon: Cpu },
+  { id: "game", icon: MonitorPlay },
 ];
 
 const docs = [
-  { icon: FileCode2, title: "libfpv.h", body: "The whole API, documented inline", href: links.docs.header },
-  { icon: BookOpen, title: "Integration guide", body: "Hooks, shaders, lessons from real mods", href: links.docs.integration },
-  { icon: Globe, title: "Web builds", body: "Compile game + mod to WebAssembly", href: links.docs.web },
-  { icon: Package, title: "Publishing", body: "One ZIP or one link for players", href: links.docs.publishing },
+  { id: "header", icon: FileCode2, href: links.docs.header },
+  { id: "integration", icon: BookOpen, href: links.docs.integration },
+  { id: "web", icon: Globe, href: links.docs.web },
+  { id: "publishing", icon: Package, href: links.docs.publishing },
 ];
 
 export default function Modders() {
+  const t = useTranslations("modders");
   return (
     <section id="modders" className="relative scroll-mt-16 border-y bg-card/40 py-24 lg:py-32">
       <div className="container">
         <SectionHeading
-          eyebrow="For modders"
-          title="Give your favourite game a drone."
-          description="libfpv has no renderer of its own and a plain C API, so it loads from any engine or mod loader. The game supplies collision and draws the result; libfpv does everything else."
+          eyebrow={t("eyebrow")}
+          title={t.rich("title", tags)}
+          description={t.rich("description", tags)}
         />
 
         {/* pipeline */}
         <div className="mx-auto mt-14 grid max-w-5xl items-stretch gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr]">
           {steps.map((s, i) => (
-            <div key={s.title} className="contents">
+            <div key={s.id} className="contents">
               <Reveal delay={i * 120}>
                 <div className="flex h-full flex-col items-center rounded-2xl border bg-background p-6 text-center shadow-sm">
                   <div className="flex size-12 items-center justify-center rounded-full border bg-card">
                     <s.icon className="size-5 text-bf" />
                   </div>
-                  <h3 className="mt-4 font-bold">{s.title}</h3>
-                  <p className="mt-1 text-sm leading-6 text-muted-foreground">{s.body}</p>
+                  <h3 className="mt-4 font-bold">{t.rich(`steps.${s.id}.title`, tags)}</h3>
+                  <p className="mt-1 text-sm leading-6 text-muted-foreground">{t.rich(`steps.${s.id}.body`, tags)}</p>
                 </div>
               </Reveal>
               {i < steps.length - 1 && (
@@ -114,7 +118,7 @@ export default function Modders() {
 
           <div className="grid gap-3">
             {docs.map((d, i) => (
-              <Reveal key={d.title} delay={i * 80}>
+              <Reveal key={d.id} delay={i * 80}>
                 <a
                   href={d.href}
                   target="_blank"
@@ -125,8 +129,8 @@ export default function Modders() {
                     <d.icon className="size-5 text-bf" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <div className="font-semibold">{d.title}</div>
-                    <div className="text-sm text-muted-foreground">{d.body}</div>
+                    <div className="font-semibold">{t.rich(`docs.${d.id}.title`, tags)}</div>
+                    <div className="text-sm text-muted-foreground">{t.rich(`docs.${d.id}.body`, tags)}</div>
                   </div>
                   <ArrowRight className="size-4 text-muted-foreground transition group-hover:translate-x-1 group-hover:text-foreground" />
                 </a>

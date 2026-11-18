@@ -1,52 +1,36 @@
 import { Bomb, Check, Clock, ListOrdered, Sparkles, Coffee } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
+import { useTranslations } from "next-intl";
 
 import { links } from "@/config";
 import Reveal from "@/components/reveal";
 import SectionHeading from "@/components/section-heading";
 import { Button } from "@/components/ui/button";
 import { PatreonIcon, PaypalIcon } from "@/components/icons";
+import { tags } from "@/lib/rich";
 
 // The perks, as listed in libfpv's overlay Kamikaze tab (LIBFPV_KAMIKAZE_PROMOTE).
+// Text: support.perks.<id> in dicts/<locale>.json.
 const perks = [
-  {
-    icon: Bomb,
-    title: "The Kamikaze version of the mods",
-    body: "Bomb switches and safety features, detonation on impact or on a button, and different views of the explosion.",
-    note: "Not designed for military use.",
-  },
-  {
-    icon: Clock,
-    title: "Early access to new FPV mods",
-    body: "Fly the drone mods for other games before anyone else.",
-  },
-  {
-    icon: ListOrdered,
-    title: "The priority queue",
-    body: "Your say comes first when the next game to mod is picked.",
-  },
-  {
-    icon: Sparkles,
-    title: "More games, better drone",
-    body: "Your contribution helps libfpv thrive and get integrated into more video games.",
-  },
+  { id: "kamikaze", icon: Bomb, note: true },
+  { id: "early", icon: Clock },
+  { id: "queue", icon: ListOrdered },
+  { id: "more", icon: Sparkles },
 ];
 
 export default function Support() {
+  const t = useTranslations("support");
   const hasPaypal = links.paypal.length > 0;
+  const checks = t.raw("checks") as string[];
 
   return (
     <section id="support" className="relative scroll-mt-16 overflow-hidden py-24 lg:py-32">
       <div className="glow-blob left-1/2 top-24 h-[36rem] w-[60rem] -translate-x-1/2 opacity-70" />
       <div className="container">
         <SectionHeading
-          eyebrow="Support the project"
-          title={
-            <>
-              Keep the props spinning.
-            </>
-          }
-          description="libfpv is a 100% open source and free project built by one&nbsp;person with the help of the whole open source community. If it made you smile, put your quad through a Liberty City window, or saved your mod weeks of work, consider chipping in."
+          eyebrow={t("eyebrow")}
+          title={t.rich("title", tags)}
+          description={t.rich("description", tags)}
         />
 
         <div className="mx-auto mt-16 grid max-w-6xl gap-6 lg:grid-cols-[1.5fr_1fr]">
@@ -59,24 +43,24 @@ export default function Support() {
                   <PatreonIcon className="size-6" />
                 </div>
                 <div>
-                  <div className="text-sm font-medium text-muted-foreground">Monthly</div>
-                  <h3 className="text-2xl font-extrabold tracking-tight">Become a patron</h3>
+                  <div className="text-sm font-medium text-muted-foreground">{t("monthly")}</div>
+                  <h3 className="text-2xl font-extrabold tracking-tight">{t("patron")}</h3>
                 </div>
                 <span className="ml-auto hidden rounded-full bg-patreon/15 px-3 py-1 text-xs font-semibold text-patreon sm:inline">
-                  Most impact
+                  {t("impact")}
                 </span>
               </div>
 
               <ul className="mt-8 grid gap-5 sm:grid-cols-2">
                 {perks.map((p) => (
-                  <li key={p.title} className="flex gap-4">
+                  <li key={p.id} className="flex gap-4">
                     <div className="flex size-10 shrink-0 items-center justify-center rounded-xl border bg-background">
                       <p.icon className="size-5 text-patreon" />
                     </div>
                     <div>
-                      <div className="font-semibold leading-6">{p.title}</div>
-                      <p className="mt-1 text-sm leading-6 text-muted-foreground">{p.body}</p>
-                      {p.note && <p className="mt-1 text-xs italic text-muted-foreground/80">{p.note}</p>}
+                      <div className="font-semibold leading-6">{t.rich(`perks.${p.id}.title`, tags)}</div>
+                      <p className="mt-1 text-sm leading-6 text-muted-foreground">{t.rich(`perks.${p.id}.body`, tags)}</p>
+                      {p.note && <p className="mt-1 text-xs italic text-muted-foreground/80">{t.rich(`perks.${p.id}.note`, tags)}</p>}
                     </div>
                   </li>
                 ))}
@@ -87,11 +71,11 @@ export default function Support() {
                   <Button asChild size="lg" variant="patreon" className="w-full sm:w-auto">
                     <a href={links.patreon} target="_blank" rel="noreferrer">
                       <PatreonIcon />
-                      Subscribe on Patreon
+                      {t("subscribe")}
                     </a>
                   </Button>
                   <p className="mt-3 hidden text-sm text-muted-foreground sm:block">
-                    Or scan the code from your phone.
+                    {t.rich("scan", tags)}
                   </p>
                 </div>
                 <div className="hidden rounded-xl bg-white p-2.5 shadow-md sm:block">
@@ -109,21 +93,20 @@ export default function Support() {
                   <PaypalIcon className="size-6" />
                 </div>
                 <div>
-                  <div className="text-sm font-medium text-muted-foreground">One time</div>
-                  <h3 className="text-2xl font-extrabold tracking-tight">Buy a set of props</h3>
+                  <div className="text-sm font-medium text-muted-foreground">{t("oneTime")}</div>
+                  <h3 className="text-2xl font-extrabold tracking-tight">{t("props")}</h3>
                 </div>
               </div>
 
               <p className="mt-6 leading-7 text-muted-foreground">
-                Not into subscriptions? A single donation through PayPal goes straight into development time
-                and new games.
+                {t.rich("oneTimeBody", tags)}
               </p>
 
               <ul className="mt-6 space-y-3 text-sm">
-                {["No account on Patreon needed", "Any amount helps", "Goes straight into new mods"].map((t) => (
-                  <li key={t} className="flex items-center gap-3">
+                {checks.map((_, i) => (
+                  <li key={i} className="flex items-center gap-3">
                     <Check className="size-4 text-paypal" />
-                    {t}
+                    {t.rich(`checks.${i}`, tags)}
                   </li>
                 ))}
               </ul>
@@ -133,13 +116,13 @@ export default function Support() {
                   <Button asChild size="lg" variant="paypal" className="w-full">
                     <a href={links.paypal} target="_blank" rel="noreferrer">
                       <PaypalIcon />
-                      Donate with PayPal
+                      {t("paypal")}
                     </a>
                   </Button>
                 ) : (
                   <Button size="lg" variant="paypal" className="w-full" disabled>
                     <Coffee />
-                    PayPal link coming soon
+                    {t("paypalSoon")}
                   </Button>
                 )}
               </div>
@@ -148,8 +131,7 @@ export default function Support() {
         </div>
 
         <Reveal className="mx-auto mt-10 max-w-2xl text-center text-sm text-muted-foreground">
-          libfpv itself stays free and open source no matter what. Support pays for development time, not
-          for access to the simulator.
+          {t.rich("footnote", tags)}
         </Reveal>
       </div>
     </section>

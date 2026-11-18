@@ -1,10 +1,13 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 import { links } from "@/config";
 import { games } from "@/data/games";
 import { GithubIcon, InstagramIcon, PatreonIcon, TiktokIcon, YoutubeIcon } from "@/components/icons";
+import { tags } from "@/lib/rich";
 
 export default function Footer() {
+  const t = useTranslations("footer");
   return (
     <footer className="border-t bg-card/40">
       <div className="container grid gap-10 py-14 md:grid-cols-[1.5fr_1fr_1fr]">
@@ -17,8 +20,7 @@ export default function Footer() {
             className="h-auto w-[198px] [image-rendering:pixelated] dark:drop-shadow-[0_0_0.5rem_rgba(255,255,255,0.25)]"
           />
           <p className="mt-4 max-w-sm text-sm leading-6 text-muted-foreground">
-            A drop-in FPV quadcopter for any game, with real Betaflight firmware in the loop. Free and open
-            source under GPL-3.0-or-later.
+            {t.rich("about", tags)}
           </p>
           <div className="mt-5 flex gap-2">
             {[
@@ -43,7 +45,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold">Games</h3>
+          <h3 className="text-sm font-semibold">{t("games")}</h3>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
             {games.map((g) => (
               <li key={g.id}>
@@ -56,21 +58,21 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold">Project</h3>
+          <h3 className="text-sm font-semibold">{t("project")}</h3>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
             <li>
               <a href={links.github} target="_blank" rel="noreferrer" className="transition hover:text-foreground">
-                Source code
+                {t("source")}
               </a>
             </li>
             <li>
               <a href={links.docs.integration} target="_blank" rel="noreferrer" className="transition hover:text-foreground">
-                Integration guide
+                {t("integration")}
               </a>
             </li>
             <li>
               <a href={links.blog} target="_blank" rel="noreferrer" className="transition hover:text-foreground">
-                How libfpv was made
+                {t("blog")}
               </a>
             </li>
             <li>
@@ -88,9 +90,9 @@ export default function Footer() {
       </div>
       <div className="border-t">
         <div className="container flex flex-col gap-2 py-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <span>© {new Date().getFullYear()} Hammerill. libfpv is GPL-3.0-or-later.</span>
+          <span>{t("license", { year: new Date().getFullYear() })}</span>
           <span>
-            Not affiliated with Betaflight or any game publisher. Game names and footage belong to their owners.
+            {t.rich("disclaimer", tags)}
           </span>
         </div>
       </div>
