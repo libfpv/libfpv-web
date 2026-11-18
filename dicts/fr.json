@@ -278,8 +278,8 @@
     "footnote": "libfpv lui-même reste libre et gratuit quoi qu’il arrive. Le soutien paie le temps de développement, pas l’accès au simulateur.",
     "perks": {
       "kamikaze": {
-        "title": "La version Kamikaze des mods",
-        "body": "Interrupteurs de bombe et sécurités, détonation à l’impact ou sur un bouton, et différentes vues de l’explosion.",
+        "title": "Les builds Kamikaze des mods",
+        "body": "Téléchargez les mods avec l’option Kamikaze déjà activée<nbsp></nbsp>: interrupteurs de bombe et sécurités, détonation à l’impact ou sur un bouton, et différentes vues de l’explosion. Le code Kamikaze lui-même est open source et fait partie de libfpv<nbsp></nbsp>: vous pouvez aussi l’activer vous-même en compilant le mod depuis les sources.",
         "note": "Non conçu pour un usage militaire."
       },
       "early": {

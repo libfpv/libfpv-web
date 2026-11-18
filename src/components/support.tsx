@@ -10,6 +10,7 @@ import { PatreonIcon, PaypalIcon } from "@/components/icons";
 import { tags } from "@/lib/rich";
 
 // The perks, as listed in libfpv's overlay Kamikaze tab (LIBFPV_KAMIKAZE_PROMOTE).
+// The Kamikaze perk is a prebuilt LIBFPV_KAMIKAZE=ON build, not locked code: anyone can compile it.
 // Text: support.perks.<id> in dicts/<locale>.json.
 const perks = [
   { id: "kamikaze", icon: Bomb, note: true },
