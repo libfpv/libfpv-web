@@ -279,8 +279,8 @@
     "perks": {
       "kamikaze": {
         "title": "Kamikaze builds of the mods",
-        "body": "Download the mods with the Kamikaze option already on: bomb switches and safety features, detonation on impact or on a button, and different views of the explosion. The Kamikaze code itself is open source and part of libfpv, so you can also turn it on yourself by compiling the mod from source.",
-        "note": "Not designed for military use."
+        "body": "Download the mods with the Kamikaze option on: bomb switches, impact or button detonation, explosion views.",
+        "note": "Its code is open in libfpv: compile it yourself if you like. Not designed for military use."
       },
       "early": {
         "title": "Early access to new FPV mods",
