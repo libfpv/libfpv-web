@@ -53,6 +53,93 @@
       "body": "Every game here is a mod built on libfpv, and the list keeps growing. Patrons get a place in the priority queue for picking which game gets a drone next, and they play it first.",
       "request": "Request a game on Patreon",
       "modYourself": "Or mod it yourself"
+    },
+    "more": "Download & details",
+    "moreNoDownload": "All about {game}"
+  },
+  "gamesPage": {
+    "metaTitle": "Games with an FPV drone | libfpv",
+    "description": "Every game here is a libfpv mod: the same real Betaflight quad, hooked into that game's own world. Pick one for its downloads, gallery, keys and what it needs to run."
+  },
+  "gamePage": {
+    "metaTitle": "{game} FPV: a real Betaflight drone in {game} | libfpv",
+    "breadcrumb": "Breadcrumb",
+    "allGames": "Games",
+    "downloadButton": "Download",
+    "download": {
+      "eyebrow": "Download",
+      "title": "Get {game} FPV.",
+      "titleSource": "Fly {game}.",
+      "description": "Free and open source, like libfpv itself. Once in the game, F7 launches the drone.",
+      "latest": "Latest build",
+      "build": "Build {n}",
+      "published": "Published {date}",
+      "for": "For {platform}",
+      "guide": "Install guide",
+      "all": "All builds",
+      "note": "Builds are published on the mod's GitHub, with the install guide. Every file is the full mod, libfpv included.",
+      "needs": "What you need",
+      "patreon": "Patrons get the Kamikaze builds and early access to new mods, on",
+      "patreonNoKamikaze": "Patrons get early access to new mods, on",
+      "sourceTitle": "No installer: this mod ships as source",
+      "sourceBody": "No game files can be distributed, so on PC you build it yourself from your own copy of the game. Or skip all that and fly the web build, right on this page.",
+      "playBrowser": "Play in the browser",
+      "buildSource": "How to build it"
+    },
+    "playBrowser": "Play in the browser",
+    "source": "Source",
+    "stats": {
+      "build": "latest build",
+      "updated": "last update",
+      "features": "libfpv features",
+      "betaflight": "real Betaflight firmware",
+      "web": "runs in your browser",
+      "source": "built from source",
+      "number": "of {count} libfpv games"
+    },
+    "play": {
+      "eyebrow": "Fly it now",
+      "title": "No install. Just a link.",
+      "description": "The game and libfpv, compiled to WebAssembly and running in this page. Your radio in USB joystick mode or a gamepad works here too."
+    },
+    "world": {
+      "eyebrow": "The world",
+      "title": "What {game} brings to it",
+      "description": "The drone is the same everywhere. These are what this mod hooks from the game itself: its things to collect, its hazards, its people."
+    },
+    "features": {
+      "eyebrow": "In this mod",
+      "title": "And the whole libfpv drone.",
+      "description": "{have} of the {total} libfpv features that fit {game} already fly in it. The rest are on their way: they need the mod to wire them up.",
+      "descriptionAll": "All {total} libfpv features that fit {game} already fly in it.",
+      "notYet": "Not yet",
+      "included": "Included",
+      "every": "What each feature does"
+    },
+    "gallery": {
+      "eyebrow": "Gallery",
+      "title": "Straight from the goggles."
+    },
+    "controls": {
+      "title": "Keys, by default",
+      "radio": "Without a radio, the keyboard and gamepad fly too. With one, F8 opens a setup wizard that maps arm, modes and more onto your switches.",
+      "actions": {
+        "launch": "Launch the drone, back to it from {pilot}",
+        "back": "Back to {pilot}, the drone left flying",
+        "overlay": "Overlay: radio, rates, OSD, camera, Betaflight CLI",
+        "camera": "Cameras: FPV, chase, line of sight",
+        "respawn": "Respawn the drone, repaired",
+        "move": "Move {pilot} under the drone",
+        "portalBlue": "Fire the blue portal",
+        "portalOrange": "Fire the orange portal",
+        "use": "Use: press the button the drone looks at",
+        "grab": "Grab or drop a cube under the drone"
+      }
+    },
+    "more": {
+      "eyebrow": "Switch channel",
+      "title": "Fly another game.",
+      "all": "All {count} games"
     }
   },
   "gameData": {
@@ -65,7 +152,12 @@
         "Each level has its own breeze, and Fwooshes blow the drone away as they blow Mario",
         "Lava, flames, Amps and Bob-omb blasts break the props"
       ],
-      "steps": ["load a save", "wait for Mario", "launch the drone"]
+      "steps": ["load a save", "wait for Mario", "launch the drone"],
+      "requirements": [
+        "For the web build: nothing but a browser",
+        "On PC: your own Super Mario 64 ROM, to build the game from source with libfpv",
+        "Windows, Linux or macOS (with a Mac app bundle)"
+      ]
     },
     "gtaiv": {
       "subtitle": "Liberty City from above",
@@ -74,6 +166,12 @@
         "Collides with buildings, cars, peds and props through the engine's own physics probe",
         "A fast hit ragdolls a ped, dents a car or shoves a prop",
         "Liberty City streams in around the drone wherever you fly"
+      ],
+      "requirements": [
+        "GTA IV: The Complete Edition, version 1.2.0.59 (Steam)",
+        "FusionFix, for its ASI loader",
+        "Aru's C++ ScriptHook",
+        "Windows 10 or 11"
       ]
     },
     "gtasa": {
@@ -84,6 +182,11 @@
         "Rain and sandstorms blow hard, police helicopters push you down, explosions shove you",
         "Bullets, molotov fires, water and helicopter rotors break the props",
         "Fly through a replay (F1, F3) or a world frozen by a photo mod"
+      ],
+      "requirements": [
+        "GTA San Andreas <b>1.0 US</b>, the version nearly every PC mod needs: Steam and Rockstar Launcher copies need a downgrade first",
+        "An ASI loader; Modloader is recommended, then the mod lives in one folder",
+        "Windows 10 or 11"
       ]
     },
     "revc": {
@@ -94,6 +197,11 @@
         "Peds and the police react to it as they would to Tommy",
         "A fast hit hurts a ped as if Tommy rammed them, or dents a car",
         "Runs next to Hammerill Trainer: both load from the same launcher"
+      ],
+      "requirements": [
+        "A Mac with Apple Silicon (M1 or later)",
+        "GTA Vice City for macOS (reVC), in Applications",
+        "Nothing else: the installer puts libfpv into the app"
       ]
     },
     "portal2": {
@@ -104,6 +212,11 @@
         "Hook a cube under the drone on a winch line and lower it onto a button",
         "Turrets shoot at the drone, lasers burn its props, goo drowns it",
         "Faith plates launch it, excursion funnels carry it, fizzlers fizzle it"
+      ],
+      "requirements": [
+        "Portal 2 on Steam, kept up to date. Single player",
+        "Windows: no other mods or tools needed",
+        "Mac with Apple Silicon: Portal 2 Natif, built by source-recomp from your Steam copy"
       ]
     }
   },
@@ -116,6 +229,16 @@
     "keys": {
       "Space": "Space"
     }
+  },
+  "gallery": {
+    "clip": "{game} with libfpv: gameplay clip",
+    "video": "{game} with libfpv: video",
+    "still": "{game} with libfpv: still {n}",
+    "open": "Open {item}",
+    "close": "Close",
+    "prev": "Previous",
+    "next": "Next",
+    "dialog": "{game} gallery"
   },
   "features": {
     "eyebrow": "In every game",

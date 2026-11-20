@@ -13,7 +13,7 @@ const osd = VT323({ subsets: ["latin"], weight: "400", variable: "--font-osd" })
 const mono = JetBrains_Mono({ subsets: ["latin", "cyrillic"], variable: "--font-mono" });
 
 /** Only these namespaces are used by client components, so only they are sent to the browser. */
-const clientNamespaces = ["header", "hero", "games", "webBuild", "stars"] as const;
+const clientNamespaces = ["header", "hero", "games", "webBuild", "stars", "gallery"] as const;
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

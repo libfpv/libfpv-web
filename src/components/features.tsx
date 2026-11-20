@@ -19,7 +19,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 
 import Reveal from "@/components/reveal";
 import SectionHeading from "@/components/section-heading";
-import { games } from "@/data/games";
+import { games, type Game } from "@/data/games";
 import { cn } from "@/lib/utils";
 import { joinList, tags } from "@/lib/rich";
 
@@ -38,7 +38,18 @@ export type Feature = {
   wide?: boolean;
   /** Mods that don't have this yet (game ids). */
   pending?: string[];
+  /**
+   * Only for some games, because the others can't have it at all (no web
+   * build without the game's source, no portals outside Portal 2). A game's
+   * page leaves it out instead of listing it as included or "not yet".
+   */
+  only?: (game: Game) => boolean;
 };
+
+/** The features a game's page lists: all but the ones that can't apply to it. */
+export function featuresFor(game: Game) {
+  return features.filter((f) => !f.only || f.only(game));
+}
 
 export const features: Feature[] = [
   { id: "betaflight", icon: Cpu, wide: true },
@@ -53,8 +64,8 @@ export const features: Feature[] = [
   { id: "sound", icon: Volume2, pending: ["gtaiv", "revc"] },
   { id: "rc-link", icon: RadioTower },
   { id: "shared", icon: FolderSync, pending: ["gtaiv"] },
-  { id: "portals", icon: Orbit },
-  { id: "web", icon: Globe, wide: true },
+  { id: "portals", icon: Orbit, only: (g) => g.id === "portal2" },
+  { id: "web", icon: Globe, wide: true, only: (g) => Boolean(g.webBuild) },
 ];
 
 type T = Awaited<ReturnType<typeof getTranslations>>;

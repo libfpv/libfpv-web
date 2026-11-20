@@ -3,37 +3,16 @@ import { useTranslations } from "next-intl";
 
 import { links } from "@/config";
 import { games, type Game } from "@/data/games";
+import { Link } from "@/navigation";
 import { cn } from "@/lib/utils";
 import Reveal from "@/components/reveal";
 import { features } from "@/components/features";
-import GameVideo from "@/components/game-video";
+import { GameTags, Screen } from "@/components/game-bits";
 import { Button } from "@/components/ui/button";
 import { GithubIcon, PatreonIcon } from "@/components/icons";
 import SectionHeading from "@/components/section-heading";
 import WebBuild from "@/components/web-build";
 import { tags } from "@/lib/rich";
-
-function Screen({ game }: { game: Game }) {
-  return (
-    <div className="group relative">
-      <div className="glow-blob inset-x-8 -bottom-6 top-6 opacity-60 dark:opacity-80" />
-      <div className="relative aspect-video overflow-hidden rounded-2xl bg-black shadow-2xl ring-1 ring-black/10 dark:ring-white/10">
-        <GameVideo media={game.media} title={game.title} className="transition duration-700 group-hover:scale-[1.03]" />
-        <div aria-hidden className="scanlines pointer-events-none absolute inset-0 opacity-30" />
-        <div aria-hidden className="vignette pointer-events-none absolute inset-0 opacity-50" />
-        <div aria-hidden className="osd-text pointer-events-none absolute left-3 top-2 text-lg sm:text-xl">
-          CH {game.channel}
-        </div>
-        <div aria-hidden className="osd-text pointer-events-none absolute right-3 top-2 text-lg sm:text-xl">
-          <span className="animate-blink text-red-400">●</span> LIVE
-        </div>
-        <div aria-hidden className="osd-text pointer-events-none absolute bottom-2 left-3 text-lg sm:text-xl">
-          {game.repoName}
-        </div>
-      </div>
-    </div>
-  );
-}
 
 /**
  * Says outright that libfpv's features aren't this game's alone, and names the
@@ -50,10 +29,10 @@ function SharedFeatures({ game }: { game: Game }) {
       <p className="text-muted-foreground">
         {t.rich("shared", { ...tags, strong: (chunks) => <span className="font-medium text-foreground">{chunks}</span> })}{" "}
         {missing.length > 0 && <>{t.rich("missing", { ...tags, list: names.join(", ") })} </>}
-        <a href="#features" className="inline-flex items-center gap-1 font-medium text-foreground underline-offset-4 hover:underline">
+        <Link href="/#features" className="inline-flex items-center gap-1 font-medium text-foreground underline-offset-4 hover:underline">
           {t("everyFeature")}
           <ArrowRight className="size-3.5" />
-        </a>
+        </Link>
       </p>
     </div>
   );
@@ -79,25 +58,13 @@ function GameRow({ game, index }: { game: Game; index: number }) {
         </Reveal>
 
         <Reveal delay={120} className={cn(flipped && "lg:order-1")}>
-          <div className="flex flex-wrap items-center gap-2">
-            {game.platforms.map((p) => (
-              <span key={p} className="rounded-full border px-3 py-0.5 text-xs font-medium text-muted-foreground">
-                {t.has(`platforms.${p}`) ? t(`platforms.${p}`) : p}
-              </span>
-            ))}
-            <span
-              className={cn(
-                "rounded-full px-3 py-0.5 text-xs font-semibold",
-                game.status === "playable"
-                  ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300"
-                  : "bg-bf/15 text-amber-700 dark:text-bf",
-              )}
-            >
-              {game.status === "playable" ? t("playable") : t("inDevelopment")}
-            </span>
-          </div>
+          <GameTags game={game} />
 
-          <h3 className="mt-4 text-3xl font-extrabold tracking-tight lg:text-4xl">{game.title}</h3>
+          <h3 className="mt-4 text-3xl font-extrabold tracking-tight lg:text-4xl">
+            <Link href={`/games/${game.id}`} className="transition hover:text-bf">
+              {game.title}
+            </Link>
+          </h3>
           <p className="mt-1 text-lg font-medium text-bf">{td.rich("subtitle", tags)}</p>
           <p className="mt-4 leading-7 text-muted-foreground">{td.rich("pitch", tags)}</p>
 
@@ -117,9 +84,15 @@ function GameRow({ game, index }: { game: Game; index: number }) {
 
           <div className="mt-7 flex flex-wrap gap-3">
             <Button asChild variant="default">
+              <Link href={`/games/${game.id}`}>
+                {t(game.downloads ? "more" : "moreNoDownload", { game: game.short })}
+                <ArrowRight />
+              </Link>
+            </Button>
+            <Button asChild variant="outline">
               <a href={game.repo} target="_blank" rel="noreferrer">
                 <GithubIcon className="size-4" />
-                {t("get", { repo: game.repoName })}
+                {game.repoName}
                 <ArrowUpRight />
               </a>
             </Button>
@@ -138,7 +111,7 @@ function GameRow({ game, index }: { game: Game; index: number }) {
   );
 }
 
-function NextGame() {
+export function NextGame() {
   const t = useTranslations("games.next");
   return (
     <Reveal>
@@ -159,7 +132,7 @@ function NextGame() {
             </a>
           </Button>
           <Button asChild variant="outline">
-            <a href="#modders">{t("modYourself")}</a>
+            <Link href="/#modders">{t("modYourself")}</Link>
           </Button>
         </div>
       </div>

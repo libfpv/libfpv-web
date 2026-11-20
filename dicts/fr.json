@@ -53,6 +53,93 @@
       "body": "Chaque jeu ici est un mod construit sur libfpv, et la liste ne cesse de s’allonger. Les mécènes ont une place dans la file prioritaire pour choisir le prochain jeu qui aura son drone, et y jouent en premier.",
       "request": "Proposer un jeu sur Patreon",
       "modYourself": "Ou le modder vous-même"
+    },
+    "more": "Télécharger et détails",
+    "moreNoDownload": "Tout sur {game}"
+  },
+  "gamesPage": {
+    "metaTitle": "Les jeux avec un drone FPV | libfpv",
+    "description": "Chaque jeu ici est un mod libfpv<nbsp></nbsp>: le même vrai quad Betaflight, branché sur le monde du jeu. Choisissez-en un pour ses téléchargements, sa galerie, ses touches et ce qu’il faut pour le lancer."
+  },
+  "gamePage": {
+    "metaTitle": "{game} FPV : un vrai drone Betaflight dans {game} | libfpv",
+    "breadcrumb": "Fil d’Ariane",
+    "allGames": "Jeux",
+    "downloadButton": "Télécharger",
+    "download": {
+      "eyebrow": "Télécharger",
+      "title": "Installez {game} FPV.",
+      "titleSource": "Faites voler {game}.",
+      "description": "Libre et gratuit, comme libfpv. Une fois dans le jeu, F7 lance le drone.",
+      "latest": "Dernière version",
+      "build": "Version {n}",
+      "published": "Publiée le {date}",
+      "for": "Pour {platform}",
+      "guide": "Guide d’installation",
+      "all": "Toutes les versions",
+      "note": "Les versions sont publiées sur le GitHub du mod, avec le guide d’installation. Chaque fichier contient le mod complet, libfpv compris.",
+      "needs": "Ce qu’il vous faut",
+      "patreon": "Les mécènes ont les versions Kamikaze et l’accès anticipé aux nouveaux mods, sur",
+      "patreonNoKamikaze": "Les mécènes ont l’accès anticipé aux nouveaux mods, sur",
+      "sourceTitle": "Pas d’installeur<nbsp></nbsp>: ce mod est distribué en code source",
+      "sourceBody": "Aucun fichier du jeu ne peut être distribué, donc sur PC vous le compilez vous-même à partir de votre propre copie du jeu. Ou oubliez tout ça et volez dans la version web, ici même.",
+      "playBrowser": "Jouer dans le navigateur",
+      "buildSource": "Comment le compiler"
+    },
+    "playBrowser": "Jouer dans le navigateur",
+    "source": "Code source",
+    "stats": {
+      "build": "dernière version",
+      "updated": "dernière mise à jour",
+      "features": "fonctionnalités libfpv",
+      "betaflight": "vrai firmware Betaflight",
+      "web": "tourne dans votre navigateur",
+      "source": "compilé depuis les sources",
+      "number": "sur {count} jeux libfpv"
+    },
+    "play": {
+      "eyebrow": "Volez maintenant",
+      "title": "Rien à installer. Juste un lien.",
+      "description": "Le jeu et libfpv, compilés en WebAssembly, tournent dans cette page. Votre radio en mode joystick USB ou une manette fonctionnent ici aussi."
+    },
+    "world": {
+      "eyebrow": "Le monde",
+      "title": "Ce qu’apporte {game}",
+      "description": "Le drone est le même partout. Voici ce que ce mod reprend du jeu lui-même<nbsp></nbsp>: ses objets à ramasser, ses dangers, ses habitants."
+    },
+    "features": {
+      "eyebrow": "Dans ce mod",
+      "title": "Et tout le drone libfpv.",
+      "description": "{have} des {total} fonctionnalités de libfpv adaptées à {game} y volent déjà. Les autres arrivent<nbsp></nbsp>: il faut que le mod les branche.",
+      "descriptionAll": "Les {total} fonctionnalités de libfpv adaptées à {game} y volent déjà toutes.",
+      "notYet": "Pas encore",
+      "included": "Inclus",
+      "every": "Ce que fait chaque fonctionnalité"
+    },
+    "gallery": {
+      "eyebrow": "Galerie",
+      "title": "Tout droit sorti des lunettes."
+    },
+    "controls": {
+      "title": "Les touches par défaut",
+      "radio": "Sans radio, le clavier et la manette font voler le drone aussi. Avec une radio, F8 ouvre un assistant qui place l’armement, les modes et le reste sur vos interrupteurs.",
+      "actions": {
+        "launch": "Lancer le drone, y revenir depuis {pilot}",
+        "back": "Revenir à {pilot}, le drone reste en vol",
+        "overlay": "Overlay<nbsp></nbsp>: radio, rates, OSD, caméra, CLI Betaflight",
+        "camera": "Caméras<nbsp></nbsp>: FPV, poursuite, vue du pilote",
+        "respawn": "Faire réapparaître le drone, réparé",
+        "move": "Amener {pilot} sous le drone",
+        "portalBlue": "Tirer le portail bleu",
+        "portalOrange": "Tirer le portail orange",
+        "use": "Utiliser<nbsp></nbsp>: appuyer sur le bouton visé par le drone",
+        "grab": "Accrocher ou lâcher un cube sous le drone"
+      }
+    },
+    "more": {
+      "eyebrow": "Changer de canal",
+      "title": "Volez dans un autre jeu.",
+      "all": "Les {count} jeux"
     }
   },
   "gameData": {
@@ -65,7 +152,12 @@
         "Chaque niveau a sa propre brise, et les Fwoosh soufflent le drone comme ils soufflent Mario",
         "La lave, les flammes, les Amps et les explosions de Bob-omb cassent les hélices"
       ],
-      "steps": ["charger une sauvegarde", "attendre Mario", "lancer le drone"]
+      "steps": ["charger une sauvegarde", "attendre Mario", "lancer le drone"],
+      "requirements": [
+        "Pour la version web<nbsp></nbsp>: rien d’autre qu’un navigateur",
+        "Sur PC<nbsp></nbsp>: votre propre ROM de Super Mario 64, pour compiler le jeu avec libfpv",
+        "Windows, Linux ou macOS (avec une app Mac)"
+      ]
     },
     "gtaiv": {
       "subtitle": "Liberty City vue d’en haut",
@@ -74,6 +166,12 @@
         "Entre en collision avec les bâtiments, les voitures, les passants et les objets grâce à la sonde physique du moteur du jeu",
         "Un choc rapide fait tomber un passant, cabosse une voiture ou bouscule un objet",
         "Liberty City se charge autour du drone, où que vous voliez"
+      ],
+      "requirements": [
+        "GTA IV<nbsp></nbsp>: The Complete Edition, version 1.2.0.59 (Steam)",
+        "FusionFix, pour son chargeur ASI",
+        "Le C++ ScriptHook d’Aru",
+        "Windows 10 ou 11"
       ]
     },
     "gtasa": {
@@ -84,6 +182,11 @@
         "La pluie et les tempêtes de sable soufflent fort, les hélicoptères de police vous plaquent vers le bas, les explosions vous projettent",
         "Les balles, les cocktails Molotov, l’eau et les rotors d’hélicoptère cassent les hélices",
         "Volez dans un replay (F1, F3) ou dans un monde figé par un mod photo"
+      ],
+      "requirements": [
+        "GTA San Andreas <b>1.0 US</b>, la version qu’exigent presque tous les mods PC<nbsp></nbsp>: les copies Steam et Rockstar Launcher doivent d’abord être rétrogradées",
+        "Un chargeur ASI<nbsp></nbsp>; Modloader est conseillé, le mod tient alors dans un seul dossier",
+        "Windows 10 ou 11"
       ]
     },
     "revc": {
@@ -94,6 +197,11 @@
         "Les passants et la police réagissent au drone comme ils le feraient avec Tommy",
         "Un choc rapide blesse un passant comme si Tommy l’avait percuté, ou cabosse une voiture",
         "Fonctionne avec Hammerill Trainer<nbsp></nbsp>: les deux se chargent depuis le même lanceur"
+      ],
+      "requirements": [
+        "Un Mac Apple Silicon (M1 ou plus récent)",
+        "GTA Vice City pour macOS (reVC), dans Applications",
+        "Rien d’autre<nbsp></nbsp>: l’installeur place libfpv dans l’app"
       ]
     },
     "portal2": {
@@ -104,6 +212,11 @@
         "Accrochez un cube sous le drone au bout d’un treuil et posez-le sur un bouton",
         "Les tourelles tirent sur le drone, les lasers brûlent ses hélices, le liquide toxique le noie",
         "Les plaques de propulsion le lancent, les tunnels d’excursion le portent, les grilles d’émancipation le désintègrent"
+      ],
+      "requirements": [
+        "Portal 2 sur Steam, à jour. Solo uniquement",
+        "Windows<nbsp></nbsp>: aucun autre mod ni outil",
+        "Mac Apple Silicon<nbsp></nbsp>: Portal 2 Natif, compilé par source-recomp depuis votre copie Steam"
       ]
     }
   },
@@ -116,6 +229,16 @@
     "keys": {
       "Space": "Espace"
     }
+  },
+  "gallery": {
+    "clip": "{game} avec libfpv : extrait de gameplay",
+    "video": "{game} avec libfpv : vidéo",
+    "still": "{game} avec libfpv : image {n}",
+    "open": "Ouvrir {item}",
+    "close": "Fermer",
+    "prev": "Précédent",
+    "next": "Suivant",
+    "dialog": "Galerie de {game}"
   },
   "features": {
     "eyebrow": "Dans chaque jeu",

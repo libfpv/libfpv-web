@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 
 import { links } from "@/config";
 import { games } from "@/data/games";
+import { Link } from "@/navigation";
 import { GithubIcon, InstagramIcon, PatreonIcon, TiktokIcon, YoutubeIcon } from "@/components/icons";
 import { tags } from "@/lib/rich";
 
@@ -45,13 +46,17 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold">{t("games")}</h3>
+          <h3 className="text-sm font-semibold">
+            <Link href="/games" className="transition hover:text-bf">
+              {t("games")}
+            </Link>
+          </h3>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
             {games.map((g) => (
               <li key={g.id}>
-                <a href={g.repo} target="_blank" rel="noreferrer" className="transition hover:text-foreground">
+                <Link href={`/games/${g.id}`} className="transition hover:text-foreground">
                   {g.title}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

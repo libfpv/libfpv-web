@@ -13,3 +13,8 @@ export const tags = {
 export function joinList(locale: string, items: string[]) {
   return new Intl.ListFormat(locale, { style: "long", type: "conjunction" }).format(items);
 }
+
+/** A translated string with its tags dropped, for places that take plain text (metadata). */
+export function plain(text: string) {
+  return text.replace(/<nbsp><\/nbsp>/g, " ").replace(/<\/?[a-z]+>/g, "");
+}
