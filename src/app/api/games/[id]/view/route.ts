@@ -3,7 +3,8 @@ import { addView } from "@/lib/stats";
 
 /**
  * POST /api/games/<id>/view: a game page was loaded (components/game-counters.tsx).
- * Counts the view and answers with the game's counters: { views, downloads }.
+ * Counts the view and answers with the game's counters:
+ * { views, downloads, files: { <file>: downloads } }.
  */
 export const dynamic = "force-dynamic";
 

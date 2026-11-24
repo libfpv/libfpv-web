@@ -105,13 +105,13 @@ export async function getAllCounts(): Promise<Record<string, Counts>> {
   return Object.fromEntries(games.map((game) => [game.id, store.data[game.id] ? counts(store.data[game.id]) : { views: 0, downloads: 0 }]));
 }
 
-/** Counts a page view; returns the counters after it. */
-export async function addView(game: Game): Promise<Counts> {
+/** Counts a page view; returns the counters after it, with each file's downloads. */
+export async function addView(game: Game): Promise<Counts & { files: Record<string, number> }> {
   await load();
   const s = entry(game);
   s.views++;
   changed();
-  return counts(s);
+  return { ...counts(s), files: Object.fromEntries((game.downloads ?? []).map((d) => [d.file, s.files[d.file] ?? 0])) };
 }
 
 /** Counts a download of one of the game's listed files. */

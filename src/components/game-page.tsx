@@ -12,7 +12,7 @@ import SectionHeading from "@/components/section-heading";
 import { featuresFor } from "@/components/features";
 import { FeedBackdrop, GameCard, GameTags, Screen, usePlatformName } from "@/components/game-bits";
 import Gallery, { type GalleryItem } from "@/components/gallery";
-import GameCounters from "@/components/game-counters";
+import GameCounters, { DownloadLink, FileDownloads } from "@/components/game-counters";
 import WebBuild from "@/components/web-build";
 import { Button } from "@/components/ui/button";
 import { GithubIcon, PatreonIcon } from "@/components/icons";
@@ -351,8 +351,10 @@ function DownloadCard({ game, release }: { game: Game; release: Release | null }
 
       <div className="mt-8 grid gap-3">
         {release.files.map((f) => (
-          <a
+          <DownloadLink
             key={f.file}
+            id={game.id}
+            file={f.file}
             href={f.url}
             className="group flex items-center gap-4 rounded-2xl border bg-background p-4 transition hover:-translate-y-0.5 hover:border-bf/60 hover:shadow-lg"
           >
@@ -371,8 +373,9 @@ function DownloadCard({ game, release }: { game: Game; release: Release | null }
                 </div>
               )}
             </div>
+            <FileDownloads id={game.id} file={f.file} className="shrink-0" />
             <ArrowRight className="size-4 shrink-0 text-muted-foreground transition group-hover:translate-x-1 group-hover:text-foreground" />
-          </a>
+          </DownloadLink>
         ))}
       </div>
 
