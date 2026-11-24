@@ -12,6 +12,7 @@ import SectionHeading from "@/components/section-heading";
 import { featuresFor } from "@/components/features";
 import { FeedBackdrop, GameCard, GameTags, Screen, usePlatformName } from "@/components/game-bits";
 import Gallery, { type GalleryItem } from "@/components/gallery";
+import GameCounters from "@/components/game-counters";
 import WebBuild from "@/components/web-build";
 import { Button } from "@/components/ui/button";
 import { GithubIcon, PatreonIcon } from "@/components/icons";
@@ -45,7 +46,10 @@ function Hero({ game, release }: { game: Game; release: Release | null }) {
           <h1 className="mt-5 text-balance text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">{game.title}</h1>
           <p className="mt-2 text-xl font-medium text-amber-300">{td.rich("subtitle", tags)}</p>
           <p className="mt-5 max-w-xl text-lg leading-8 text-white/80">{td.rich("pitch", tags)}</p>
-          <GameTags game={game} dark className="mt-6" />
+          <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
+            <GameTags game={game} dark />
+            <GameCounters id={game.id} view dark />
+          </div>
 
           <div className="mt-8 flex flex-wrap gap-3">
             {release ? (

@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import Reveal from "@/components/reveal";
 import { features } from "@/components/features";
 import { GameTags, Screen } from "@/components/game-bits";
+import GameCounters from "@/components/game-counters";
 import { Button } from "@/components/ui/button";
 import { GithubIcon, PatreonIcon } from "@/components/icons";
 import SectionHeading from "@/components/section-heading";
@@ -58,7 +59,10 @@ function GameRow({ game, index }: { game: Game; index: number }) {
         </Reveal>
 
         <Reveal delay={120} className={cn(flipped && "lg:order-1")}>
-          <GameTags game={game} />
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <GameTags game={game} />
+            <GameCounters id={game.id} />
+          </div>
 
           <h3 className="mt-4 text-3xl font-extrabold tracking-tight lg:text-4xl">
             <Link href={`/games/${game.id}`} className="transition hover:text-bf">

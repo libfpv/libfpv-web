@@ -45,8 +45,7 @@
     "watchVideo": "Voir la vidéo",
     "clip": "{game} avec libfpv : extrait de gameplay",
     "platforms": {
-      "sm64ex port": "portage sm64ex",
-      "Browser": "Navigateur"
+      "Web": "Web"
     },
     "next": {
       "title": "Votre jeu, le prochain<nbsp></nbsp>?",
@@ -60,6 +59,11 @@
   "gamesPage": {
     "metaTitle": "Les jeux avec un drone FPV | libfpv",
     "description": "Chaque jeu ici est un mod libfpv<nbsp></nbsp>: le même vrai quad Betaflight, branché sur le monde du jeu. Choisissez-en un pour ses téléchargements, sa galerie, ses touches et ce qu’il faut pour le lancer."
+  },
+  "counters": {
+    "label": "Vues de la page et téléchargements",
+    "views": "{count, plural, one {# vue} other {# vues}}",
+    "downloads": "{count, plural, one {# téléchargement} other {# téléchargements}}"
   },
   "gamePage": {
     "metaTitle": "libfpv pour {game} : un vrai drone FPV Betaflight",

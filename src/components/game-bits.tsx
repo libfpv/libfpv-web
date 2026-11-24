@@ -5,6 +5,7 @@ import { mediaAspect, type Game } from "@/data/games";
 import { Link } from "@/navigation";
 import { cn } from "@/lib/utils";
 import { tags } from "@/lib/rich";
+import GameCounters from "@/components/game-counters";
 import GameVideo from "@/components/game-video";
 
 /** A game's clip in a goggle frame: channel, LIVE and the mod's name on the OSD. */
@@ -51,7 +52,7 @@ export function StatusBadge({ game, className }: { game: Game; className?: strin
   );
 }
 
-/** Translated platform name ("Browser" → "Navigateur"), or the name as is. */
+/** Translated platform name ("Web" → "Веб"), or the name as is. */
 export function usePlatformName() {
   const t = useTranslations("games");
   return (p: string) => (t.has(`platforms.${p}`) ? t(`platforms.${p}`) : p);
@@ -153,7 +154,10 @@ export function GameCard({ game, className }: { game: Game; className?: string }
           </div>
           <ArrowRight className="mt-1.5 size-5 shrink-0 text-muted-foreground transition group-hover:translate-x-1 group-hover:text-foreground" />
         </div>
-        <GameTags game={game} className="mt-4" />
+        <div className="mt-auto flex flex-wrap items-center justify-between gap-2 pt-4">
+          <GameTags game={game} />
+          <GameCounters id={game.id} />
+        </div>
       </div>
     </Link>
   );

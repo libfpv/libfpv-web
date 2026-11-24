@@ -52,6 +52,12 @@ export type Game = {
    * blurred fill (mediaAspect, game-bits.tsx). Full-bleed backdrops crop any clip.
    */
   aspect?: number;
+  /**
+   * Only the systems the mod is playable on ("Windows", "macOS", "Web"...).
+   * Don't add tags for the port, loader or tooling it is built on (no
+   * "sm64ex port", "modloader", "ScriptHookRDR2"): with the status badge,
+   * these are the card's only tags.
+   */
   platforms: string[];
   status: "playable" | "in development";
   video?: string;
@@ -106,7 +112,7 @@ export const games: Game[] = [
     repo: "https://github.com/hammerill/sm64ex-fpv",
     repoName: "sm64ex-fpv",
     media: "sm64",
-    platforms: ["PC", "sm64ex port", "Browser"],
+    platforms: ["PC", "Web"],
     status: "playable",
     channel: "R1",
     pilot: "Mario",
@@ -139,7 +145,7 @@ export const games: Game[] = [
     repo: "https://github.com/hammerill/gtasa-fpv",
     repoName: "gtasa-fpv",
     media: "gtasa",
-    platforms: ["Windows", "modloader"],
+    platforms: ["Windows"],
     status: "playable",
     video: "https://www.youtube.com/watch?v=tsXKFhD8TOw",
     channel: "R3",
@@ -155,7 +161,7 @@ export const games: Game[] = [
     repo: "https://github.com/hammerill/reVC-mac-fpv",
     repoName: "reVC-mac-fpv",
     media: "revc",
-    platforms: ["macOS", "Apple Silicon", "reVC"],
+    platforms: ["macOS", "Apple Silicon"],
     status: "playable",
     channel: "R4",
     pilot: "Tommy",
@@ -171,7 +177,7 @@ export const games: Game[] = [
     repo: "https://github.com/hammerill/portal-2-fpv",
     repoName: "portal-2-fpv",
     media: "portal2",
-    platforms: ["Windows", "macOS", "Apple Silicon", "source-recomp"],
+    platforms: ["Windows", "macOS", "Apple Silicon"],
     status: "playable",
     channel: "R5",
     pilot: "Chell",
@@ -202,7 +208,7 @@ export const games: Game[] = [
     hosted: true,
     media: "rdr2",
     aspect: 4 / 3,
-    platforms: ["Windows", "ScriptHookRDR2"],
+    platforms: ["Windows"],
     status: "playable",
     channel: "R6",
     pilot: "Arthur",

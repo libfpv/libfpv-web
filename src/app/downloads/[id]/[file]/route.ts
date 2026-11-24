@@ -1,19 +1,46 @@
 import { getGame } from "@/data/games";
-import { openHostedFile } from "@/lib/downloads";
+import { isDownload, openHostedFile } from "@/lib/downloads";
+import { addDownload } from "@/lib/stats";
 
 /**
- * /downloads/<id>/<file>: a hosted game's ZIP (lib/downloads.ts). In production
- * nginx serves these straight from the downloads folder and this route is
- * never reached; it makes the links work with `npm run dev` and `next start`.
- * Only a file the game lists in `downloads` is ever opened.
+ * /downloads/<id>/<file>: every game's download link (lib/releases.ts). It
+ * counts the download (lib/stats.ts), then serves a hosted game's ZIP
+ * (lib/downloads.ts) or redirects to the file on the mod's latest GitHub
+ * release. Only a file the game lists in `downloads` is ever counted or opened.
+ *
+ * nginx must proxy this path to the app rather than serve the ZIPs itself,
+ * or hosted downloads aren't counted.
  */
 export const dynamic = "force-dynamic";
 
-export async function GET(_req: Request, { params }: { params: Promise<{ id: string; file: string }> }) {
+const notFound = () => new Response("Not found", { status: 404, headers: { "Content-Type": "text/plain" } });
+
+/**
+ * A request for the file's start: a resumed or split download (Range from a
+ * later byte) is the same download, counted once already.
+ */
+function isStart(req: Request) {
+  const range = req.headers.get("range");
+  return !range || /^bytes=0-/.test(range.trim());
+}
+
+export async function GET(req: Request, { params }: { params: Promise<{ id: string; file: string }> }) {
   const { id, file } = await params;
   const game = getGame(id);
-  const opened = game ? await openHostedFile(game, file) : null;
-  if (!opened) return new Response("Not found", { status: 404, headers: { "Content-Type": "text/plain" } });
+  if (!game || !isDownload(game, file)) return notFound();
+
+  if (!game.hosted) {
+    if (!game.repo) return notFound();
+    await addDownload(game, file);
+    return new Response(null, {
+      status: 302,
+      headers: { Location: `${game.repo}/releases/latest/download/${file}`, "Cache-Control": "no-store" },
+    });
+  }
+
+  const opened = await openHostedFile(game, file);
+  if (!opened) return notFound();
+  if (isStart(req)) await addDownload(game, file);
   return new Response(opened.stream, {
     headers: {
       "Content-Type": "application/zip",

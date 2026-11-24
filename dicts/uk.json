@@ -45,8 +45,7 @@
     "watchVideo": "Дивитися відео",
     "clip": "{game} з libfpv: уривок геймплею",
     "platforms": {
-      "sm64ex port": "порт sm64ex",
-      "Browser": "Браузер"
+      "Web": "Веб"
     },
     "next": {
       "title": "Ваша гра наступна?",
@@ -60,6 +59,11 @@
   "gamesPage": {
     "metaTitle": "Ігри з FPV-дроном | libfpv",
     "description": "Кожна гра тут — це мод libfpv: той самий справжній квадрокоптер на Betaflight, підключений до світу самої гри. Оберіть гру, щоб побачити завантаження, галерею, клавіші та що потрібно для запуску."
+  },
+  "counters": {
+    "label": "Перегляди сторінки та завантаження",
+    "views": "{count, plural, one {# перегляд} few {# перегляди} many {# переглядів} other {# перегляду}}",
+    "downloads": "{count, plural, one {# завантаження} few {# завантаження} many {# завантажень} other {# завантаження}}"
   },
   "gamePage": {
     "metaTitle": "libfpv для {game}: справжній FPV-дрон на Betaflight",

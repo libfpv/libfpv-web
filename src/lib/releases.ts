@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 
 import type { Game } from "@/data/games";
-import { getHostedRelease, hostedUrl } from "@/lib/downloads";
+import { downloadUrl, getHostedRelease } from "@/lib/downloads";
 
 export type ReleaseFile = {
   file: string;
@@ -40,9 +40,10 @@ type GithubRelease = {
  * otherwise the mod's latest GitHub release, read at most once an hour (ISR),
  * like the star count.
  *
- * Returns null for a mod without downloads (it ships as source). If GitHub
- * can't be reached, the files still link to releases/latest/download/<file>,
- * just without a build number, date or size.
+ * Returns null for a mod without downloads (it ships as source). Every file
+ * links to /downloads/<id>/<file>, which counts the download and, for a GitHub
+ * game, redirects to releases/latest/download/<file>. If GitHub can't be
+ * reached, the files are still listed, just without a build number, date or size.
  */
 export async function getRelease(game: Game): Promise<Release | null> {
   if (!game.downloads?.length) return null;
@@ -53,7 +54,7 @@ export async function getRelease(game: Game): Promise<Release | null> {
   const fallback: Release = {
     page: latest,
     all: `${game.repo}/releases`,
-    files: game.downloads.map((d) => ({ ...d, url: `${latest}/download/${d.file}` })),
+    files: game.downloads.map((d) => ({ ...d, url: downloadUrl(game, d.file) })),
   };
 
   const repo = game.repo.replace("https://github.com/", "");
@@ -71,9 +72,8 @@ export async function getRelease(game: Game): Promise<Release | null> {
       all: `${game.repo}/releases`,
       files: game.downloads.map((d) => {
         const asset = data.assets.find((a) => a.name === d.file);
-        return asset
-          ? { ...d, url: asset.browser_download_url, size: asset.size }
-          : { ...d, url: `${latest}/download/${d.file}` };
+        // Through our own /downloads route, which counts it (app/downloads).
+        return { ...d, url: downloadUrl(game, d.file), size: asset?.size };
       }),
     };
   } catch {
@@ -94,7 +94,7 @@ async function getHosted(game: Game): Promise<Release | null> {
     hosted: true,
     files: game.downloads!.flatMap((d) => {
       const f = r.files.find((x) => x.file === d.file);
-      return f ? [{ ...d, url: hostedUrl(game, d.file), size: f.size, sha256: f.sha256 }] : [];
+      return f ? [{ ...d, url: downloadUrl(game, d.file), size: f.size, sha256: f.sha256 }] : [];
     }),
   };
 }

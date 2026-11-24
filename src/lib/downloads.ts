@@ -15,8 +15,8 @@ import type { Game } from "@/data/games";
  *
  * <dir> is LIBFPV_DOWNLOADS_DIR, default ./data/downloads (gitignored). In
  * production it is the VPS's /srv/www/libfpv-downloads, mounted read-only into
- * the container; nginx serves the ZIPs at /downloads/<id>/<file> directly, and
- * the route in app/downloads serves them everywhere else (`npm run dev`).
+ * the container. The route in app/downloads serves the ZIPs at
+ * /downloads/<id>/<file>, counting each download (lib/stats.ts).
  *
  * Everything read here is checked before use: only the game's own listed files
  * (regular files, never symlinks)
@@ -140,7 +140,16 @@ export async function openHostedFile(game: Game, file: string) {
   }
 }
 
-/** Where players download a hosted file. */
-export function hostedUrl(game: Game, file: string) {
+/**
+ * Where players download a game's file, hosted or not: the route in
+ * app/downloads counts the download, then serves the file or sends the player
+ * on to the GitHub release.
+ */
+export function downloadUrl(game: Game, file: string) {
   return `/downloads/${game.id}/${file}`;
+}
+
+/** A listed download of a game, hosted or not. */
+export function isDownload(game: Game, file: string) {
+  return Boolean(game.downloads?.some((d) => d.file === file));
 }

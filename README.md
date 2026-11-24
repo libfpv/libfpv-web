@@ -28,7 +28,20 @@ ffmpeg -ss 1.5 -i in.gif -frames:v 1 -q:v 3 public/games/NAME.jpg
 A game with `hosted: true` in `src/data/games.ts` (RDR2) is distributed only here, not on GitHub. Its release pipeline uploads three files to `<LIBFPV_DOWNLOADS_DIR>/<id>/` (`src/lib/downloads.ts`): the ZIP, `INSTALL.md` and `release.json` (build number, date, mod and libfpv commits, size and SHA-256 of each file). The game's page shows that build, `/games/<id>/install` renders the guide (Markdown, English only, no raw HTML), and the ZIP is at `/downloads/<id>/<file>`. Both pages read the files on every request, so a new build shows without redeploying the site.
 
 - **Locally:** `LIBFPV_DOWNLOADS_DIR` defaults to `data/downloads` (gitignored). Put a build there, for example with rdr2-fpv's `tools/package.sh data/downloads/rdr2`; `npm run dev` then serves the ZIP through `src/app/downloads`.
-- **On the VPS:** the folder is `/srv/www/libfpv-downloads` (`LIBFPV_DOWNLOADS` in `~/dockers/docker-libfpv/.env`), mounted read-only into the container. nginx serves only the ZIPs from it, with `Content-Disposition: attachment` and no symlinks (`confs/00-libfpv.com.conf`). Each game's pipeline has its own SSH key for `deploy`, pinned to `rrsync -wo /srv/www/libfpv-downloads/<id>`: it can write that one folder and nothing else.
+- **On the VPS:** the folder is `/srv/www/libfpv-downloads` (`LIBFPV_DOWNLOADS` in `~/dockers/docker-libfpv/.env`), mounted read-only into the container. nginx proxies `/downloads/` to the app like any other path, so every download is counted (see below). Each game's pipeline has its own SSH key for `deploy`, pinned to `rrsync -wo /srv/www/libfpv-downloads/<id>`: it can write that one folder and nothing else.
+
+## View and download counters
+
+Each game's page, card and home-page row shows its views (👁) and downloads (cards read them all at once from `GET /api/stats`), kept in `data/stats/counters.json` (`LIBFPV_STATS_DIR`, gitignored; `src/lib/stats.ts`):
+
+```json
+{ "rdr2": { "views": 120, "downloads": 31, "files": { "rdr2-fpv.zip": 31 } } }
+```
+
+- **A view** is a page load: the page `POST`s `/api/games/<id>/view` from the browser, and shows the counters it answers with.
+- **A download** is a request to `/downloads/<id>/<file>`, every game's download link. It counts, then serves a hosted ZIP or redirects to the file on the mod's latest GitHub release. A ranged request that doesn't start at byte 0 (a resumed download) isn't counted again.
+
+On the VPS, `docker-compose.yml` bind-mounts `./data/stats` writable; the container runs as uid 1001, so create it once with `mkdir -p data/stats && sudo chown 1001:1001 data/stats`. If it isn't writable, the counters still work but only in memory (logged once) and reset on restart.
 
 ## Deploy
 

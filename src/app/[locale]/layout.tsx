@@ -12,7 +12,7 @@ import { routing, type Locale } from "@/navigation";
 import "./globals.css";
 
 /** Only these namespaces are used by client components, so only they are sent to the browser. */
-const clientNamespaces = ["header", "hero", "games", "webBuild", "stars", "gallery"] as const;
+const clientNamespaces = ["header", "hero", "games", "webBuild", "stars", "gallery", "counters"] as const;
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
