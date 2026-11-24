@@ -6,8 +6,8 @@
  * mod), so nothing there should read as exclusive when it isn't.
  */
 /**
- * A file players download. Today it is an asset of the mod's latest GitHub
- * release (lib/releases.ts); later it can point at libfpv's own downloads.
+ * A file players download: an asset of the mod's latest GitHub release, or,
+ * for a `hosted` game, a file libfpv.com serves itself (lib/releases.ts).
  */
 export type Download = {
   /** The release asset's file name. */
@@ -28,11 +28,30 @@ export type Game = {
   title: string;
   /** Short name, used where space is tight ("not in GTA IV yet"). */
   short: string;
-  /** The mod's repository. */
-  repo: string;
+  /**
+   * The mod's public repository. None: the mod's source isn't published, and
+   * it is distributed only here (`hosted`).
+   */
+  repo?: string;
+  /** The mod's name ("gtasa-fpv"), shown on the OSD and the download card. */
   repoName: string;
+  /**
+   * The downloads are hosted on libfpv.com instead of GitHub releases: the
+   * mod's release pipeline uploads the ZIP, its install guide (INSTALL.md) and
+   * release.json to <LIBFPV_DOWNLOADS_DIR>/<id>/, and the site renders the
+   * guide at /games/<id>/install.
+   */
+  hosted?: boolean;
   /** Media in /public/games: <media>.mp4, .webm and .jpg (poster). */
   media: string;
+  /**
+   * The shape of the clip and the gallery stills, width / height: 16 / 9 when
+   * left out. Where the clip is the subject (the game's own page, the games
+   * list, the gallery) it is framed at this shape; in a game card, whose shape
+   * is fixed so the cards line up, a narrower clip is shown whole over a
+   * blurred fill (mediaAspect, game-bits.tsx). Full-bleed backdrops crop any clip.
+   */
+  aspect?: number;
   platforms: string[];
   status: "playable" | "in development";
   video?: string;
@@ -49,6 +68,7 @@ export type Game = {
    * false: no Kamikaze build for patrons. A prebuilt binary of this mod would
    * contain the game's own code (sm64ex is a decompilation), and selling that
    * isn't legal. The Kamikaze code stays open for anyone building it themselves.
+   * Also false for a game whose page shouldn't offer one.
    */
   kamikaze?: boolean;
   /** Who stays behind with the radio ("CJ"), named in the controls. */
@@ -174,7 +194,29 @@ export const games: Game[] = [
     gallery: stills,
     heroStart: 1,
   },
+  {
+    id: "rdr2",
+    title: "Red Dead Redemption 2",
+    short: "RDR2",
+    repoName: "rdr2-fpv",
+    hosted: true,
+    media: "rdr2",
+    aspect: 4 / 3,
+    platforms: ["Windows", "ScriptHookRDR2"],
+    status: "playable",
+    channel: "R6",
+    pilot: "Arthur",
+    kamikaze: false,
+    downloads: [{ file: "rdr2-fpv.zip", platform: "Windows" }],
+    controls: [launch, back, overlay, cameras("C"), respawn, moveHere],
+    gallery: stills,
+  },
 ];
+
+/** The game's clip shape (width / height). */
+export function mediaAspect(game: Game) {
+  return game.aspect ?? 16 / 9;
+}
 
 export function getGame(id: string) {
   return games.find((g) => g.id === id);

@@ -4,6 +4,10 @@
 
 @layer base {
   :root {
+    /* The fonts (Fontsource, imported in layout.tsx), used by tailwind.config.ts. */
+    --font-inter: "Inter Variable";
+    --font-osd: "VT323";
+    --font-mono: "JetBrains Mono Variable";
     --background: 0 0% 100%;
     --foreground: 224 71.4% 4.1%;
     --card: 0 0% 100%;

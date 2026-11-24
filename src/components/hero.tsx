@@ -31,7 +31,7 @@ export default function Hero({ stars }: { stars: number | null }) {
   const [idx, setIdx] = useState(0);
   const [staticBurst, setStaticBurst] = useState(false);
   const [seconds, setSeconds] = useState(0);
-  const timer = useRef<ReturnType<typeof setTimeout>>();
+  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const switchTo = useCallback((next: number | "next") => {
     setStaticBurst(true);

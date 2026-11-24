@@ -7,6 +7,15 @@ services:
     # nginx (docker-nginx, host network) proxies libfpv.com to this port
     ports:
       - 127.0.0.1:3010:3000
+    # Hosted downloads (src/lib/downloads.ts), read-only: <game>/ with its ZIP,
+    # INSTALL.md and release.json, uploaded by the mods' release pipelines.
+    # On the VPS, .env sets LIBFPV_DOWNLOADS=/srv/www/libfpv-downloads.
+    volumes:
+      - ${LIBFPV_DOWNLOADS:-./data/downloads}:/app/data/downloads:ro
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
     healthcheck:
       test: wget -qO /dev/null http://127.0.0.1:3000/ || exit 1
       timeout: 30s

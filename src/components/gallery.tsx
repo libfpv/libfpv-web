@@ -1,7 +1,7 @@
 "use client";
 /* eslint-disable @next/next/no-img-element -- small stills and YouTube thumbnails, shown as is */
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, type CSSProperties } from "react";
 import { ChevronLeft, ChevronRight, Expand, Play, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -52,7 +52,11 @@ function Full({ item, label }: { item: GalleryItem; label: string }) {
  * The game's clip, video and stills in a grid; any of them opens full size,
  * with arrow keys and Escape. The clip leads, larger than the rest.
  */
-export default function Gallery({ items, game }: { items: GalleryItem[]; game: string }) {
+/**
+ * `aspect` is the shape of the game's clip and stills (Game.aspect): the tiles
+ * and the full-size view take it, so nothing is cropped. YouTube stays 16:9.
+ */
+export default function Gallery({ items, game, aspect = 16 / 9 }: { items: GalleryItem[]; game: string; aspect?: number }) {
   const t = useTranslations("gallery");
   const [open, setOpen] = useState<number | null>(null);
   const hasVideo = items.some((x) => x.kind === "youtube");
@@ -86,7 +90,7 @@ export default function Gallery({ items, game }: { items: GalleryItem[]; game: s
   }, [open, step]);
 
   return (
-    <>
+    <div style={{ "--media-aspect": aspect } as CSSProperties}>
       <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         {items.map((item, i) => (
           <button
@@ -95,11 +99,11 @@ export default function Gallery({ items, game }: { items: GalleryItem[]; game: s
             onClick={() => setOpen(i)}
             aria-label={t("open", { item: label(item, i) })}
             className={cn(
-              "group relative aspect-video overflow-hidden rounded-2xl bg-black shadow-lg ring-1 ring-black/10 transition duration-300 hover:-translate-y-0.5 hover:shadow-2xl dark:ring-white/10",
+              "group relative overflow-hidden rounded-2xl bg-black shadow-lg ring-1 ring-black/10 transition duration-300 hover:-translate-y-0.5 hover:shadow-2xl dark:ring-white/10",
               // The clip leads at double size. With a video next to it, both
               // take a half row each, and the stills line up below.
               i === 0 && (hasVideo ? "col-span-2" : "col-span-2 lg:row-span-2 lg:aspect-auto lg:h-full"),
-              item.kind === "youtube" && "col-span-2",
+              item.kind === "youtube" ? "col-span-2 aspect-video" : "aspect-[var(--media-aspect)]",
             )}
           >
             <Thumb item={item} title={game} />
@@ -139,7 +143,13 @@ export default function Gallery({ items, game }: { items: GalleryItem[]; game: s
             </button>
           </div>
           <div className="relative flex min-h-0 flex-1 items-center justify-center px-4 pb-6 sm:px-20">
-            <div className="aspect-video max-h-full w-full max-w-5xl overflow-hidden rounded-xl bg-black" onClick={(e) => e.stopPropagation()}>
+            <div
+              className={cn(
+                "max-h-full w-full max-w-5xl overflow-hidden rounded-xl bg-black",
+                items[open].kind === "youtube" ? "aspect-video" : "aspect-[var(--media-aspect)]",
+              )}
+              onClick={(e) => e.stopPropagation()}
+            >
               <Full key={open} item={items[open]} label={label(items[open], open)} />
             </div>
             {items.length > 1 && (
@@ -171,6 +181,6 @@ export default function Gallery({ items, game }: { items: GalleryItem[]; game: s
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

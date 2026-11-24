@@ -1,9 +1,7 @@
-/**
- * Site-wide links. If paypal is emptied, the PayPal button shows as "coming soon".
- */
+/** Site-wide links. */
 export const links = {
   patreon: "https://patreon.com/Hammerill",
-  paypal: "https://paypal.me/hammerill",
+  buyMeACoffee: "https://buymeacoffee.com/hammerill",
   github: "https://github.com/hammerill/libfpv",
   author: "https://hammerill.com",
   /** The story of how libfpv was made. No locale: hammerill.com redirects to the visitor's. */

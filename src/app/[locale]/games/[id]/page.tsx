@@ -10,7 +10,7 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import GamePage from "@/components/game-page";
 
-type Props = { params: { locale: string; id: string } };
+type Props = { params: Promise<{ locale: string; id: string }> };
 
 /** One page per game, /games/<id>; any other id is a 404. */
 export const dynamicParams = false;
@@ -19,7 +19,8 @@ export function generateStaticParams() {
   return games.map((g) => ({ id: g.id }));
 }
 
-export async function generateMetadata({ params: { locale, id } }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale, id } = await params;
   const game = getGame(id);
   if (!game) return {};
   const t = await getTranslations({ locale, namespace: "gamePage" });
@@ -42,7 +43,8 @@ export async function generateMetadata({ params: { locale, id } }: Props): Promi
   };
 }
 
-export default async function Page({ params: { locale, id } }: Props) {
+export default async function Page({ params }: Props) {
+  const { locale, id } = await params;
   setRequestLocale(locale);
   const game = getGame(id);
   if (!game) notFound();

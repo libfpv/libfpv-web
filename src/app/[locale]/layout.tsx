@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, VT323, JetBrains_Mono } from "next/font/google";
+// Self-hosted from npm (Fontsource): served by this site, and the build fetches nothing from Google.
+import "@fontsource-variable/inter";
+import "@fontsource-variable/jetbrains-mono";
+import "@fontsource/vt323";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -8,10 +11,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { routing, type Locale } from "@/navigation";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin", "cyrillic"], variable: "--font-inter" });
-const osd = VT323({ subsets: ["latin"], weight: "400", variable: "--font-osd" });
-const mono = JetBrains_Mono({ subsets: ["latin", "cyrillic"], variable: "--font-mono" });
-
 /** Only these namespaces are used by client components, so only they are sent to the browser. */
 const clientNamespaces = ["header", "hero", "games", "webBuild", "stars", "gallery"] as const;
 
@@ -19,7 +18,8 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "metadata" });
 
   return {
@@ -46,8 +46,9 @@ export const viewport: Viewport = {
 
 export default async function RootLayout({
   children,
-  params: { locale },
-}: Readonly<{ children: React.ReactNode; params: { locale: string } }>) {
+  params,
+}: Readonly<{ children: React.ReactNode; params: Promise<{ locale: string }> }>) {
+  const { locale } = await params;
   if (!routing.locales.includes(locale as Locale)) notFound();
   setRequestLocale(locale);
 
@@ -56,7 +57,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={`${inter.variable} ${osd.variable} ${mono.variable} overflow-x-hidden font-sans`}>
+      <body className="overflow-x-hidden font-sans">
         <NextIntlClientProvider locale={locale} messages={clientMessages}>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
             {children}

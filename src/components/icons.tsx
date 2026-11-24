@@ -16,14 +16,6 @@ export function PatreonIcon({ className }: { className?: string }) {
   );
 }
 
-export function PaypalIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}>
-      <path d="M7.08 21.5H3.7a.55.55 0 0 1-.54-.64L5.88 3.6a.9.9 0 0 1 .89-.76h6.53c3.13 0 5.17 1.62 4.66 4.83-.6 3.82-3.2 5.5-6.6 5.5H9.5a.9.9 0 0 0-.89.76L7.08 21.5Zm12.4-13.43c-.73 4.03-3.5 5.84-7.1 5.84h-1.04a.8.8 0 0 0-.79.68l-.98 6.23a.48.48 0 0 0 .47.55h2.84a.8.8 0 0 0 .79-.67l.03-.17.6-3.83.04-.2a.8.8 0 0 1 .79-.68h.5c3.2 0 5.7-1.3 6.43-5.06.3-1.53.15-2.82-.6-3.69l-.98.99Z" />
-    </svg>
-  );
-}
-
 export function YoutubeIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}>

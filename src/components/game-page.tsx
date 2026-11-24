@@ -2,7 +2,7 @@ import { ArrowRight, ArrowUpRight, BookOpen, Check, ChevronRight, Download, Game
 import { useLocale, useTranslations } from "next-intl";
 
 import { links } from "@/config";
-import { games, type Game } from "@/data/games";
+import { games, mediaAspect, type Game } from "@/data/games";
 import { Link } from "@/navigation";
 import { cn, youtubeId } from "@/lib/utils";
 import { tags } from "@/lib/rich";
@@ -81,12 +81,23 @@ function Hero({ game, release }: { game: Game; release: Release | null }) {
                 </a>
               </Button>
             )}
-            <Button asChild size="lg" variant="glass">
-              <a href={game.repo} target="_blank" rel="noreferrer">
-                <GithubIcon className="size-5" />
-                {t("source")}
-              </a>
-            </Button>
+            {game.repo ? (
+              <Button asChild size="lg" variant="glass">
+                <a href={game.repo} target="_blank" rel="noreferrer">
+                  <GithubIcon className="size-5" />
+                  {t("source")}
+                </a>
+              </Button>
+            ) : (
+              release?.hosted && (
+                <Button asChild size="lg" variant="glass">
+                  <Link href={release.page}>
+                    <BookOpen />
+                    {t("download.guide")}
+                  </Link>
+                </Button>
+              )
+            )}
           </div>
         </div>
 
@@ -255,7 +266,7 @@ function GallerySection({ game }: { game: Game }) {
       <div className="container">
         <SectionHeading eyebrow={t("eyebrow")} title={t.rich("title", tags)} />
         <Reveal className="mx-auto mt-12 max-w-6xl">
-          <Gallery items={items} game={game.title} />
+          <Gallery items={items} game={game.title} aspect={mediaAspect(game)} />
         </Reveal>
       </div>
     </section>
@@ -266,6 +277,19 @@ function DownloadCard({ game, release }: { game: Game; release: Release | null }
   const t = useTranslations("gamePage.download");
   const locale = useLocale();
   const platform = usePlatformName();
+
+  if (!release && game.hosted) {
+    return (
+      <div className="relative h-full overflow-hidden rounded-[2rem] border bg-card p-8 shadow-xl sm:p-10">
+        <div className="glow-blob -right-20 -top-20 h-72 w-72 opacity-70" />
+        <div className="flex size-12 items-center justify-center rounded-2xl border bg-background">
+          <Download className="size-6" />
+        </div>
+        <h3 className="mt-5 text-2xl font-extrabold tracking-tight">{t.rich("pendingTitle", tags)}</h3>
+        <p className="mt-3 leading-7 text-muted-foreground">{t.rich("pendingBody", tags)}</p>
+      </div>
+    );
+  }
 
   if (!release) {
     return (
@@ -337,6 +361,11 @@ function DownloadCard({ game, release }: { game: Game; release: Release | null }
                 {f.file}
                 {f.size !== undefined && ` · ${formatSize(locale, f.size)}`}
               </div>
+              {f.sha256 && (
+                <div className="truncate font-mono text-[11px] text-muted-foreground/80" title={f.sha256}>
+                  SHA-256 {f.sha256}
+                </div>
+              )}
             </div>
             <ArrowRight className="size-4 shrink-0 text-muted-foreground transition group-hover:translate-x-1 group-hover:text-foreground" />
           </a>
@@ -345,20 +374,30 @@ function DownloadCard({ game, release }: { game: Game; release: Release | null }
 
       <div className="mt-6 flex flex-wrap gap-3">
         <Button asChild variant="default">
-          <a href={release.page} target="_blank" rel="noreferrer">
-            <BookOpen />
-            {t("guide")}
-            <ArrowUpRight />
-          </a>
+          {release.hosted ? (
+            <Link href={release.page}>
+              <BookOpen />
+              {t("guide")}
+              <ArrowRight />
+            </Link>
+          ) : (
+            <a href={release.page} target="_blank" rel="noreferrer">
+              <BookOpen />
+              {t("guide")}
+              <ArrowUpRight />
+            </a>
+          )}
         </Button>
-        <Button asChild variant="outline">
-          <a href={`${game.repo}/releases`} target="_blank" rel="noreferrer">
-            {t("all")}
-          </a>
-        </Button>
+        {release.all && (
+          <Button asChild variant="outline">
+            <a href={release.all} target="_blank" rel="noreferrer">
+              {t("all")}
+            </a>
+          </Button>
+        )}
       </div>
 
-      <p className="mt-6 text-sm leading-6 text-muted-foreground">{t.rich("note", tags)}</p>
+      <p className="mt-6 text-sm leading-6 text-muted-foreground">{t.rich(release.hosted ? "noteHosted" : "note", tags)}</p>
     </div>
   );
 }
@@ -448,8 +487,8 @@ function DownloadSection({ game, release }: { game: Game; release: Release | nul
       <div className="container">
         <SectionHeading
           eyebrow={t("eyebrow")}
-          title={t.rich(release ? "title" : "titleSource", { ...tags, game: game.short })}
-          description={t.rich("description", tags)}
+          title={t.rich(release || game.hosted ? "title" : "titleSource", { ...tags, game: game.short })}
+          description={t.rich(game.hosted ? "descriptionHosted" : "description", tags)}
         />
         <div className="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[1.3fr_1fr]">
           <Reveal>

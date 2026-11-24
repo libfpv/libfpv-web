@@ -13,7 +13,7 @@ export const localeNames: Record<Locale, string> = {
 
 /**
  * The locale never shows in the URL: libfpv.com/ is the same link in every
- * language. The middleware picks the locale from the NEXT_LOCALE cookie
+ * language. The proxy (src/proxy.ts) picks the locale from the NEXT_LOCALE cookie
  * (set by the language switcher), then from Accept-Language, and rewrites
  * the request to /[locale] internally.
  */

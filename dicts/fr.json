@@ -3,7 +3,7 @@
     "title": "libfpv : un drone FPV dans n’importe quel jeu",
     "description": "libfpv fait entrer un vrai quadricoptère FPV, avec le vrai firmware Betaflight, dans n’importe quel jeu : Super Mario 64, GTA IV, GTA San Andreas, Vice City, Portal 2 et d’autres. Libre et gratuit.",
     "keywords": "libfpv, FPV, drone, quadricoptère, Betaflight, mod, GTA, Mario 64, Portal 2, open source, logiciel libre",
-    "ogAlt": "GTA San Andreas en FPV"
+    "ogAlt": "libfpv pour GTA San Andreas"
   },
   "header": {
     "games": "Jeux",
@@ -62,15 +62,19 @@
     "description": "Chaque jeu ici est un mod libfpv<nbsp></nbsp>: le même vrai quad Betaflight, branché sur le monde du jeu. Choisissez-en un pour ses téléchargements, sa galerie, ses touches et ce qu’il faut pour le lancer."
   },
   "gamePage": {
-    "metaTitle": "{game} FPV : un vrai drone Betaflight dans {game} | libfpv",
+    "metaTitle": "libfpv pour {game} : un vrai drone FPV Betaflight",
     "breadcrumb": "Fil d’Ariane",
     "allGames": "Jeux",
     "downloadButton": "Télécharger",
     "download": {
       "eyebrow": "Télécharger",
-      "title": "Installez {game} FPV.",
+      "title": "Installez libfpv pour {game}.",
       "titleSource": "Faites voler {game}.",
       "description": "Libre et gratuit, comme libfpv. Une fois dans le jeu, F7 lance le drone.",
+      "descriptionHosted": "Gratuit, libfpv inclus. Une fois en jeu, F7 lance le drone.",
+      "noteHosted": "Les builds sont publiés ici, sur libfpv.com, avec le guide d’installation. Chaque fichier contient le mod complet, libfpv inclus.",
+      "pendingTitle": "Le premier build arrive",
+      "pendingBody": "Les téléchargements de ce mod sont publiés ici, sur libfpv.com. Revenez bientôt.",
       "latest": "Dernière version",
       "build": "Version {n}",
       "published": "Publiée le {date}",
@@ -141,6 +145,15 @@
       "title": "Volez dans un autre jeu.",
       "all": "Les {count} jeux"
     }
+  },
+  "installPage": {
+    "metaTitle": "Installer libfpv pour {game}",
+    "description": "Comment installer libfpv pour {game}<nbsp></nbsp>: le téléchargement, ce qu’il faut d’autre et où va chaque fichier.",
+    "eyebrow": "Guide d’installation",
+    "title": "Installer libfpv pour {game}",
+    "back": "Retour à {game}",
+    "englishOnly": "Ce guide n’existe qu’en anglais.",
+    "noBuild": "Aucun build n’a encore été publié. Revenez bientôt."
   },
   "gameData": {
     "sm64": {
@@ -217,6 +230,21 @@
         "Portal 2 sur Steam, à jour. Solo uniquement",
         "Windows<nbsp></nbsp>: aucun autre mod ni outil",
         "Mac Apple Silicon<nbsp></nbsp>: Portal 2 Natif, compilé par source-recomp depuis votre copie Steam"
+      ]
+    },
+    "rdr2": {
+      "subtitle": "La frontière vue du ciel, 1899",
+      "pitch": "Arthur pose un quad sur le sol devant lui. Poursuivez les chariots à travers les plaines, rasez les rivières et faufilez-vous entre les pins de la frontière.",
+      "highlights": [
+        "Les hommes de loi et les ennemis voient le drone, le poursuivent et lui tirent dessus, pendant qu’Arthur attend au poste de pilotage avec une petite boîte entre les mains, ce qui ressemble le plus à une radiocommande en 1899",
+        "Un choc rapide renverse les gens et les chevaux, et c’est Arthur le coupable<nbsp></nbsp>: les témoins et la loi réagissent",
+        "Le vent suit la météo du jeu, calme à l’abri des bâtiments<nbsp></nbsp>; les explosions bousculent le drone",
+        "L’eau, le feu, les explosions et les balles cassent les hélices, et un drone posé sur un chariot en marche voyage avec lui"
+      ],
+      "requirements": [
+        "Red Dead Redemption 2 sur PC (Steam, Epic ou Rockstar Launcher), mode histoire",
+        "ScriptHookRDR2 d’Alexander Blade, avec son chargeur ASI",
+        "Windows 10 ou 11"
       ]
     }
   },
@@ -394,10 +422,9 @@
     "scan": "Ou scannez le code avec votre téléphone.",
     "oneTime": "Ponctuel",
     "props": "Offrir un jeu d’hélices",
-    "oneTimeBody": "Pas fan des abonnements<nbsp></nbsp>? Un don unique via PayPal va directement dans le temps de développement et les nouveaux jeux.",
+    "oneTimeBody": "Pas fan des abonnements<nbsp></nbsp>? Un don unique via Buy Me a Coffee va directement dans le temps de développement et les nouveaux jeux.",
     "checks": ["Pas besoin de compte Patreon", "Chaque montant compte", "Va directement dans de nouveaux mods"],
-    "paypal": "Faire un don avec PayPal",
-    "paypalSoon": "Lien PayPal bientôt disponible",
+    "coffee": "Offrez-moi un café",
     "footnote": "libfpv lui-même reste libre et gratuit quoi qu’il arrive. Le soutien paie le temps de développement, pas l’accès au simulateur.",
     "perks": {
       "kamikaze": {

@@ -6,7 +6,7 @@ import { links } from "@/config";
 import Reveal from "@/components/reveal";
 import SectionHeading from "@/components/section-heading";
 import { Button } from "@/components/ui/button";
-import { PatreonIcon, PaypalIcon } from "@/components/icons";
+import { PatreonIcon } from "@/components/icons";
 import { tags } from "@/lib/rich";
 
 // The perks, as listed in libfpv's overlay Kamikaze tab (LIBFPV_KAMIKAZE_PROMOTE).
@@ -21,7 +21,6 @@ const perks = [
 
 export default function Support() {
   const t = useTranslations("support");
-  const hasPaypal = links.paypal.length > 0;
   const checks = t.raw("checks") as string[];
 
   return (
@@ -90,8 +89,8 @@ export default function Support() {
           <Reveal delay={120}>
             <div className="flex h-full flex-col rounded-[2rem] border bg-card p-8 shadow-lg sm:p-10">
               <div className="flex items-center gap-3">
-                <div className="flex size-12 items-center justify-center rounded-2xl bg-paypal text-white">
-                  <PaypalIcon className="size-6" />
+                <div className="flex size-12 items-center justify-center rounded-2xl bg-coffee text-coffee-foreground">
+                  <Coffee className="size-6" />
                 </div>
                 <div>
                   <div className="text-sm font-medium text-muted-foreground">{t("oneTime")}</div>
@@ -106,26 +105,19 @@ export default function Support() {
               <ul className="mt-6 space-y-3 text-sm">
                 {checks.map((_, i) => (
                   <li key={i} className="flex items-center gap-3">
-                    <Check className="size-4 text-paypal" />
+                    <Check className="size-4 text-coffee-ink" />
                     {t.rich(`checks.${i}`, tags)}
                   </li>
                 ))}
               </ul>
 
               <div className="mt-auto pt-10">
-                {hasPaypal ? (
-                  <Button asChild size="lg" variant="paypal" className="w-full">
-                    <a href={links.paypal} target="_blank" rel="noreferrer">
-                      <PaypalIcon />
-                      {t("paypal")}
-                    </a>
-                  </Button>
-                ) : (
-                  <Button size="lg" variant="paypal" className="w-full" disabled>
+                <Button asChild size="lg" variant="coffee" className="w-full">
+                  <a href={links.buyMeACoffee} target="_blank" rel="noreferrer">
                     <Coffee />
-                    {t("paypalSoon")}
-                  </Button>
-                )}
+                    {t("coffee")}
+                  </a>
+                </Button>
               </div>
             </div>
           </Reveal>

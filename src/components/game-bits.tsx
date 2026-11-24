@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type { Game } from "@/data/games";
+import { mediaAspect, type Game } from "@/data/games";
 import { Link } from "@/navigation";
 import { cn } from "@/lib/utils";
 import { tags } from "@/lib/rich";
@@ -12,7 +12,10 @@ export function Screen({ game, className }: { game: Game; className?: string }) 
   return (
     <div className={cn("group relative", className)}>
       <div className="glow-blob inset-x-8 -bottom-6 top-6 opacity-60 dark:opacity-80" />
-      <div className="relative aspect-video overflow-hidden rounded-2xl bg-black shadow-2xl ring-1 ring-black/10 dark:ring-white/10">
+      <div
+        className="relative overflow-hidden rounded-2xl bg-black shadow-2xl ring-1 ring-black/10 dark:ring-white/10"
+        style={{ aspectRatio: mediaAspect(game) }}
+      >
         <GameVideo media={game.media} title={game.title} className="transition duration-700 group-hover:scale-[1.03]" />
         <div aria-hidden className="scanlines pointer-events-none absolute inset-0 opacity-30" />
         <div aria-hidden className="vignette pointer-events-none absolute inset-0 opacity-50" />
@@ -111,6 +114,8 @@ export function FeedBackdrop({ media }: { media?: string }) {
 /** A game in a list: its clip, name, tagline and platforms, linking to its page. */
 export function GameCard({ game, className }: { game: Game; className?: string }) {
   const td = useTranslations(`gameData.${game.id}`);
+  // The card is 16:9 so the cards line up; a narrower clip isn't cropped to fit.
+  const narrow = mediaAspect(game) < 16 / 9 - 0.01;
   return (
     <Link
       href={`/games/${game.id}`}
@@ -120,7 +125,21 @@ export function GameCard({ game, className }: { game: Game; className?: string }
       )}
     >
       <div className="relative aspect-video overflow-hidden bg-black">
-        <GameVideo media={game.media} title={game.title} className="transition duration-700 group-hover:scale-[1.04]" />
+        {narrow && (
+          // The whole clip, pillarboxed over a blurred, darkened fill of itself.
+          // eslint-disable-next-line @next/next/no-img-element -- a small poster, blurred
+          <img
+            src={`/games/${game.media}.jpg`}
+            alt=""
+            aria-hidden
+            className="absolute inset-0 h-full w-full scale-110 object-cover opacity-50 blur-xl"
+          />
+        )}
+        <GameVideo
+          media={game.media}
+          title={game.title}
+          className={cn("relative transition duration-700 group-hover:scale-[1.04]", narrow && "object-contain")}
+        />
         <div aria-hidden className="scanlines pointer-events-none absolute inset-0 opacity-30" />
         <div aria-hidden className="vignette pointer-events-none absolute inset-0 opacity-50" />
         <div aria-hidden className="osd-text pointer-events-none absolute left-3 top-2 text-lg">CH {game.channel}</div>

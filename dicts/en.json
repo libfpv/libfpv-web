@@ -3,7 +3,7 @@
     "title": "libfpv: FPV drone in any game",
     "description": "libfpv drops a real FPV quadcopter, running real Betaflight firmware, into any game: Super Mario 64, GTA IV, GTA San Andreas, Vice City, Portal 2 and more. Free and open source.",
     "keywords": "libfpv, FPV, drone, quadcopter, Betaflight, game mod, GTA, Mario 64, Portal 2, open source",
-    "ogAlt": "GTA San Andreas FPV"
+    "ogAlt": "libfpv for GTA San Andreas"
   },
   "header": {
     "games": "Games",
@@ -62,15 +62,19 @@
     "description": "Every game here is a libfpv mod: the same real Betaflight quad, hooked into that game's own world. Pick one for its downloads, gallery, keys and what it needs to run."
   },
   "gamePage": {
-    "metaTitle": "{game} FPV: a real Betaflight drone in {game} | libfpv",
+    "metaTitle": "libfpv for {game}: a real Betaflight FPV drone",
     "breadcrumb": "Breadcrumb",
     "allGames": "Games",
     "downloadButton": "Download",
     "download": {
       "eyebrow": "Download",
-      "title": "Get {game} FPV.",
+      "title": "Get libfpv for {game}.",
       "titleSource": "Fly {game}.",
       "description": "Free and open source, like libfpv itself. Once in the game, F7 launches the drone.",
+      "descriptionHosted": "Free, with libfpv included. Once in the game, F7 launches the drone.",
+      "noteHosted": "Builds are published here on libfpv.com, with the install guide. Every file is the full mod, libfpv included.",
+      "pendingTitle": "The first build is on its way",
+      "pendingBody": "This mod's downloads are published here, on libfpv.com. Check back soon.",
       "latest": "Latest build",
       "build": "Build {n}",
       "published": "Published {date}",
@@ -141,6 +145,15 @@
       "title": "Fly another game.",
       "all": "All {count} games"
     }
+  },
+  "installPage": {
+    "metaTitle": "Install libfpv for {game}",
+    "description": "How to install libfpv for {game}: the download, what else you need, and where each file goes.",
+    "eyebrow": "Install guide",
+    "title": "Install libfpv for {game}",
+    "back": "Back to {game}",
+    "englishOnly": "",
+    "noBuild": "No build has been published yet. Check back soon."
   },
   "gameData": {
     "sm64": {
@@ -217,6 +230,21 @@
         "Portal 2 on Steam, kept up to date. Single player",
         "Windows: no other mods or tools needed",
         "Mac with Apple Silicon: Portal 2 Natif, built by source-recomp from your Steam copy"
+      ]
+    },
+    "rdr2": {
+      "subtitle": "The frontier from above, 1899",
+      "pitch": "Arthur puts a quad down on the ground in front of him. Chase wagons across the plains, skim the rivers and thread the pines of the frontier.",
+      "highlights": [
+        "Lawmen and enemies see, chase and shoot at the drone, while Arthur waits at the piloting spot with a little box in his hands, the closest thing 1899 has to a radio",
+        "A fast hit knocks people and horses over, with Arthur as the culprit: witnesses and the law react",
+        "Wind from the game's weather, calm in the lee of buildings; explosions shove the drone",
+        "Water, fire, explosions and bullets break the props, and a drone that lands on a moving wagon rides along"
+      ],
+      "requirements": [
+        "Red Dead Redemption 2 on PC (Steam, Epic or Rockstar Launcher), story mode",
+        "ScriptHookRDR2 by Alexander Blade, with its ASI loader",
+        "Windows 10 or 11"
       ]
     }
   },
@@ -394,10 +422,9 @@
     "scan": "Or scan the code from your phone.",
     "oneTime": "One time",
     "props": "Buy a set of props",
-    "oneTimeBody": "Not into subscriptions? A single donation through PayPal goes straight into development time and new games.",
+    "oneTimeBody": "Not into subscriptions? A single donation through Buy Me a Coffee goes straight into development time and new games.",
     "checks": ["No account on Patreon needed", "Any amount helps", "Goes straight into new mods"],
-    "paypal": "Donate with PayPal",
-    "paypalSoon": "PayPal link coming soon",
+    "coffee": "Buy me a coffee",
     "footnote": "libfpv itself stays free and open source no matter what. Support pays for development time, not for access to the simulator.",
     "perks": {
       "kamikaze": {

@@ -1,4 +1,7 @@
+import { unstable_noStore as noStore } from "next/cache";
+
 import type { Game } from "@/data/games";
+import { getHostedRelease, hostedUrl } from "@/lib/downloads";
 
 export type ReleaseFile = {
   file: string;
@@ -6,6 +9,8 @@ export type ReleaseFile = {
   url: string;
   /** Bytes, when the release could be read. */
   size?: number;
+  /** SHA-256 of the file (hosted builds). */
+  sha256?: string;
 };
 
 export type Release = {
@@ -15,6 +20,10 @@ export type Release = {
   date?: string;
   /** The release page, with the install guide. */
   page: string;
+  /** The page is on this site (/games/<id>/install), not on GitHub. */
+  hosted?: boolean;
+  /** Where to see every build; none for hosted games (only the latest is kept). */
+  all?: string;
   files: ReleaseFile[];
 };
 
@@ -26,9 +35,10 @@ type GithubRelease = {
 };
 
 /**
- * Where a game's downloads come from. For now that is the mod's latest GitHub
- * release, read at most once an hour (ISR), like the star count. When libfpv
- * hosts the files itself, only this function has to change.
+ * Where a game's downloads come from: libfpv.com itself for a `hosted` game
+ * (lib/downloads.ts, read on every request, so a new build shows at once),
+ * otherwise the mod's latest GitHub release, read at most once an hour (ISR),
+ * like the star count.
  *
  * Returns null for a mod without downloads (it ships as source). If GitHub
  * can't be reached, the files still link to releases/latest/download/<file>,
@@ -36,10 +46,13 @@ type GithubRelease = {
  */
 export async function getRelease(game: Game): Promise<Release | null> {
   if (!game.downloads?.length) return null;
+  if (game.hosted) return getHosted(game);
+  if (!game.repo) return null;
 
   const latest = `${game.repo}/releases/latest`;
   const fallback: Release = {
     page: latest,
+    all: `${game.repo}/releases`,
     files: game.downloads.map((d) => ({ ...d, url: `${latest}/download/${d.file}` })),
   };
 
@@ -55,6 +68,7 @@ export async function getRelease(game: Game): Promise<Release | null> {
       tag: data.tag_name,
       date: data.published_at,
       page: data.html_url,
+      all: `${game.repo}/releases`,
       files: game.downloads.map((d) => {
         const asset = data.assets.find((a) => a.name === d.file);
         return asset
@@ -65,6 +79,24 @@ export async function getRelease(game: Game): Promise<Release | null> {
   } catch {
     return fallback;
   }
+}
+
+/** A hosted game's latest build; null (no download card) until one is uploaded. */
+async function getHosted(game: Game): Promise<Release | null> {
+  // The files change without a site rebuild: render this page per request.
+  noStore();
+  const r = await getHostedRelease(game);
+  if (!r || !r.files.length) return null;
+  return {
+    tag: `build-${r.build}`,
+    date: r.date,
+    page: `/games/${game.id}/install`,
+    hosted: true,
+    files: game.downloads!.flatMap((d) => {
+      const f = r.files.find((x) => x.file === d.file);
+      return f ? [{ ...d, url: hostedUrl(game, d.file), size: f.size, sha256: f.sha256 }] : [];
+    }),
+  };
 }
 
 /** "5.1 MB" in the page's language. */

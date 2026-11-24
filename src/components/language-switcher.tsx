@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 /**
  * The URL never carries the locale, so switching keeps the same link: the
  * router writes the NEXT_LOCALE cookie, then the page is re-rendered by the
- * server, whose middleware now picks the new locale from that cookie.
+ * server, whose proxy (src/proxy.ts) now picks the new locale from that cookie.
  */
 export default function LanguageSwitcher() {
   const t = useTranslations("header");

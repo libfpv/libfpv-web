@@ -15,7 +15,7 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         patreon:
           "bg-patreon text-white shadow-[0_0_2rem_-0.5rem_#FF424D] hover:shadow-[0_0_2.5rem_-0.25rem_#FF424D] hover:brightness-110",
-        paypal: "bg-paypal text-white shadow-[0_0_2rem_-0.75rem_#0070E0] hover:brightness-110",
+        coffee: "bg-coffee text-coffee-foreground shadow-[0_0_2rem_-0.75rem_#FFDD00] hover:brightness-105",
         glass: "border border-white/20 bg-white/10 text-white backdrop-blur-md hover:bg-white/20",
       },
       size: {

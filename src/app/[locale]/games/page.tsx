@@ -11,9 +11,10 @@ import Reveal from "@/components/reveal";
 import { FeedBackdrop, GameCard } from "@/components/game-bits";
 import { NextGame } from "@/components/games";
 
-type Props = { params: { locale: string } };
+type Props = { params: Promise<{ locale: string }> };
 
-export async function generateMetadata({ params: { locale } }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "gamesPage" });
   const title = t("metaTitle");
   const description = plain(t.raw("description") as string);
@@ -25,7 +26,8 @@ export async function generateMetadata({ params: { locale } }: Props): Promise<M
   };
 }
 
-export default async function GamesPage({ params: { locale } }: Props) {
+export default async function GamesPage({ params }: Props) {
+  const { locale } = await params;
   setRequestLocale(locale);
   const [stars, t, tg] = await Promise.all([
     getStars(),

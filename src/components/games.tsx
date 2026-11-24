@@ -89,13 +89,15 @@ function GameRow({ game, index }: { game: Game; index: number }) {
                 <ArrowRight />
               </Link>
             </Button>
-            <Button asChild variant="outline">
-              <a href={game.repo} target="_blank" rel="noreferrer">
-                <GithubIcon className="size-4" />
-                {game.repoName}
-                <ArrowUpRight />
-              </a>
-            </Button>
+            {game.repo && (
+              <Button asChild variant="outline">
+                <a href={game.repo} target="_blank" rel="noreferrer">
+                  <GithubIcon className="size-4" />
+                  {game.repoName}
+                  <ArrowUpRight />
+                </a>
+              </Button>
+            )}
             {game.video && (
               <Button asChild variant="outline">
                 <a href={game.video} target="_blank" rel="noreferrer">

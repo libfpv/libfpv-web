@@ -1,4 +1,6 @@
 /node_modules
+# runtime files: the hosted downloads in development (data/downloads/<game>/)
+/data
 /.next/
 /out/
 /build
@@ -9,3 +11,5 @@ npm-debug.log*
 .vercel
 *.tsbuildinfo
 next-env.d.ts
+# the VPS checkout keeps LIBFPV_DOWNLOADS here (docker-compose.yml)
+/.env
