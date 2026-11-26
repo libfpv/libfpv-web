@@ -31,6 +31,8 @@ import { joinList, tags } from "@/lib/rich";
  *
  * Each feature's title and body are features.items.<id> in dicts/<locale>.json,
  * and when it has `pending`, so is what's missing, lowercase ("the video feed").
+ * A game in `notes` has features.items.<id>.notes.<game id>: where that game's
+ * mod does it differently, shown under the feature.
  */
 export type Feature = {
   id: string;
@@ -38,6 +40,11 @@ export type Feature = {
   wide?: boolean;
   /** Mods that don't have this yet (game ids). */
   pending?: string[];
+  /**
+   * Games whose mod has this but works differently from the body's text
+   * (game ids; the text is features.items.<id>.notes.<game id>).
+   */
+  notes?: string[];
   /**
    * Only for some games, because the others can't have it at all (no web
    * build without the game's source, no portals outside Portal 2). A game's
@@ -54,16 +61,16 @@ export function featuresFor(game: Game) {
 export const features: Feature[] = [
   { id: "betaflight", icon: Cpu, wide: true },
   { id: "radio", icon: Gamepad2 },
-  { id: "stand-in", icon: UserRound, wide: true, pending: ["gtaiv"] },
-  { id: "pilot-view", icon: Footprints, pending: ["gtaiv", "revc"] },
-  { id: "video", icon: Tv, wide: true, pending: ["gtaiv", "revc", "portal2"] },
-  { id: "wind", icon: Wind, pending: ["gtaiv", "revc"] },
-  { id: "damage", icon: Flame, pending: ["gtaiv", "revc"] },
+  { id: "stand-in", icon: UserRound, wide: true, notes: ["gtaiv"] },
+  { id: "pilot-view", icon: Footprints },
+  { id: "video", icon: Tv, wide: true, pending: ["portal2"] },
+  { id: "wind", icon: Wind },
+  { id: "damage", icon: Flame },
   { id: "presets", icon: Boxes },
   { id: "osd", icon: MapPin },
-  { id: "sound", icon: Volume2, pending: ["gtaiv", "revc"] },
+  { id: "sound", icon: Volume2 },
   { id: "rc-link", icon: RadioTower },
-  { id: "shared", icon: FolderSync, pending: ["gtaiv"] },
+  { id: "shared", icon: FolderSync },
   { id: "portals", icon: Orbit, only: (g) => g.id === "portal2" },
   { id: "web", icon: Globe, wide: true, only: (g) => Boolean(g.webBuild) },
 ];
@@ -109,6 +116,11 @@ export default async function Features() {
                 {f.pending && (
                   <p className="mt-3 text-xs font-medium text-muted-foreground/80">{pendingText(t, locale, f)}</p>
                 )}
+                {f.notes?.map((id) => (
+                  <p key={id} className="mt-3 text-xs font-medium text-muted-foreground/80">
+                    {t.rich(`items.${f.id}.notes.${id}`, tags)}
+                  </p>
+                ))}
               </div>
             </Reveal>
           ))}

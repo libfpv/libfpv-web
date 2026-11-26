@@ -182,7 +182,8 @@
       "highlights": [
         "Entre en collision avec les bâtiments, les voitures, les passants et les objets grâce à la sonde physique du moteur du jeu",
         "Un choc rapide fait tomber un passant, cabosse une voiture ou bouscule un objet",
-        "Liberty City se charge autour du drone, où que vous voliez"
+        "La police et les gangs poursuivent le drone et lui tirent dessus, et ce qui blesserait Niko casse ses hélices",
+        "Les orages soufflent fort, les hélicoptères vous plaquent vers le bas, les explosions vous projettent<nbsp></nbsp>; l’eau, le feu et les rotors cassent les hélices"
       ],
       "requirements": [
         "GTA IV<nbsp></nbsp>: The Complete Edition, version 1.2.0.59 (Steam)",
@@ -211,8 +212,9 @@
       "pitch": "Un plugin pour la recompilation macOS de Vice City. Tommy lance un quad depuis le sol et la ville néon s’ouvre sous lui. Autonome<nbsp></nbsp>: rien d’autre à installer.",
       "highlights": [
         "Le drone ramasse les bonus de Vice City et passe les portes pour entrer dans ses intérieurs",
-        "Les passants et la police réagissent au drone comme ils le feraient avec Tommy",
+        "Les passants et la police tirent sur le drone lui-même<nbsp></nbsp>; les balles, le feu, l’eau et les rotors d’hélicoptère cassent ses hélices",
         "Un choc rapide blesse un passant comme si Tommy l’avait percuté, ou cabosse une voiture",
+        "Les tempêtes soufflent fort, les hélicoptères vous plaquent vers le bas, les explosions vous projettent",
         "Fonctionne avec Hammerill Trainer<nbsp></nbsp>: les deux se chargent depuis le même lanceur"
       ],
       "requirements": [
@@ -289,7 +291,10 @@
       "stand-in": {
         "title": "Le monde traite le drone comme vous",
         "body": "Votre personnage lance le drone et reste au poste de pilotage, radio en main. Éloignez-vous et le jeu joue contre le drone comme s’il était le joueur<nbsp></nbsp>: ennemis et police le poursuivent, portes, bonus et déclencheurs réagissent à lui, et la carte se charge autour de lui. Activé par défaut, désactivable dans F8.",
-        "pending": "le drone à la place du joueur"
+        "pending": "le drone à la place du joueur",
+        "notes": {
+          "gtaiv": "Dans GTA IV, Niko accompagne le drone, caché<nbsp></nbsp>: personne ne reste au point de décollage."
+        }
       },
       "pilot-view": {
         "title": "Retour au pilote",

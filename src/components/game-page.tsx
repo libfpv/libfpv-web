@@ -230,6 +230,11 @@ function Features({ game }: { game: Game }) {
                   </div>
                   <span className={cn("min-w-0 flex-1 text-sm font-semibold leading-5", pending && "text-muted-foreground")}>
                     {tf.rich(`${f.id}.title`, tags)}
+                    {f.notes?.includes(game.id) && (
+                      <span className="mt-0.5 block text-xs font-normal text-muted-foreground">
+                        {tf.rich(`${f.id}.notes.${game.id}`, tags)}
+                      </span>
+                    )}
                   </span>
                   {pending ? (
                     <span className="shrink-0 rounded-full border px-2 py-0.5 text-[11px] font-medium text-muted-foreground">

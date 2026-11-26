@@ -182,7 +182,8 @@
       "highlights": [
         "Collides with buildings, cars, peds and props through the engine's own physics probe",
         "A fast hit ragdolls a ped, dents a car or shoves a prop",
-        "Liberty City streams in around the drone wherever you fly"
+        "The police and gangs chase and shoot the drone, and what would hurt Niko breaks its props",
+        "Thunderstorms blow hard, helicopters push you down, explosions shove you; water, fire and rotors break the props"
       ],
       "requirements": [
         "GTA IV: The Complete Edition, version 1.2.0.59 (Steam)",
@@ -211,8 +212,9 @@
       "pitch": "A plugin for the macOS recompilation of Vice City. Tommy launches a quad from the ground and the neon city opens up below it. Self-contained: nothing else to install.",
       "highlights": [
         "The drone picks up Vice City's pickups and flies through doors into its interiors",
-        "Peds and the police react to it as they would to Tommy",
+        "Peds and the police shoot at the drone itself; bullets, fires, water and helicopter rotors break its props",
         "A fast hit hurts a ped as if Tommy rammed them, or dents a car",
+        "Storms blow hard, helicopters push you down, explosions shove you",
         "Runs next to Hammerill Trainer: both load from the same launcher"
       ],
       "requirements": [
@@ -289,7 +291,10 @@
       "stand-in": {
         "title": "The world treats the drone as you",
         "body": "Your character launches the drone and stays at the piloting spot, radio in hand. Fly away and the game plays against the drone as if it were the player: enemies and police go after it, doors, pickups and triggers react to it, and the map loads around it. On by default, off in F8.",
-        "pending": "the stand-in"
+        "pending": "the stand-in",
+        "notes": {
+          "gtaiv": "In GTA IV, Niko goes along with the drone, hidden: nobody stays behind at the launch spot."
+        }
       },
       "pilot-view": {
         "title": "Back to the pilot",
