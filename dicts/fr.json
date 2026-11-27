@@ -431,7 +431,7 @@
     "scan": "Ou scannez le code avec votre téléphone.",
     "oneTime": "Ponctuel",
     "props": "Offrir un jeu d’hélices",
-    "oneTimeBody": "Pas fan des abonnements<nbsp></nbsp>? Un don unique via Buy Me a Coffee va directement dans le temps de développement et les nouveaux jeux.",
+    "oneTimeBody": "Pas fan des abonnements<nbsp></nbsp>? Un don unique via Ko-fi va directement dans le temps de développement et les nouveaux jeux.",
     "checks": ["Pas besoin de compte Patreon", "Chaque montant compte", "Va directement dans de nouveaux mods"],
     "coffee": "Offrez-moi un café",
     "footnote": "libfpv lui-même reste libre et gratuit quoi qu’il arrive. Le soutien paie le temps de développement, pas l’accès au simulateur.",

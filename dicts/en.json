@@ -431,7 +431,7 @@
     "scan": "Or scan the code from your phone.",
     "oneTime": "One time",
     "props": "Buy a set of props",
-    "oneTimeBody": "Not into subscriptions? A single donation through Buy Me a Coffee goes straight into development time and new games.",
+    "oneTimeBody": "Not into subscriptions? A single donation through Ko-fi goes straight into development time and new games.",
     "checks": ["No account on Patreon needed", "Any amount helps", "Goes straight into new mods"],
     "coffee": "Buy me a coffee",
     "footnote": "libfpv itself stays free and open source no matter what. Support pays for development time, not for access to the simulator.",

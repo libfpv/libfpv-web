@@ -48,8 +48,8 @@ const config = {
           foreground: "hsl(var(--bf-foreground))",
         },
         patreon: "#FF424D",
-        // Buy Me a Coffee yellow; -ink is a darker shade readable on light backgrounds.
-        coffee: { DEFAULT: "#FFDD00", foreground: "#000000", ink: "#C9A800" },
+        // Ko-fi blue; -ink is a darker shade readable on light backgrounds.
+        kofi: { DEFAULT: "#29ABE0", foreground: "#FFFFFF", ink: "#1C86B3" },
       },
       borderRadius: {
         lg: "var(--radius)",

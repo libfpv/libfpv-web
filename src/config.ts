@@ -1,7 +1,7 @@
 /** Site-wide links. */
 export const links = {
   patreon: "https://patreon.com/Hammerill",
-  buyMeACoffee: "https://buymeacoffee.com/hammerill",
+  kofi: "https://ko-fi.com/hammerill",
   github: "https://github.com/hammerill/libfpv",
   author: "https://hammerill.com",
   /** The story of how libfpv was made. No locale: hammerill.com redirects to the visitor's. */

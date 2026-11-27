@@ -89,7 +89,7 @@ export default function Support() {
           <Reveal delay={120}>
             <div className="flex h-full flex-col rounded-[2rem] border bg-card p-8 shadow-lg sm:p-10">
               <div className="flex items-center gap-3">
-                <div className="flex size-12 items-center justify-center rounded-2xl bg-coffee text-coffee-foreground">
+                <div className="flex size-12 items-center justify-center rounded-2xl bg-kofi text-kofi-foreground">
                   <Coffee className="size-6" />
                 </div>
                 <div>
@@ -105,15 +105,15 @@ export default function Support() {
               <ul className="mt-6 space-y-3 text-sm">
                 {checks.map((_, i) => (
                   <li key={i} className="flex items-center gap-3">
-                    <Check className="size-4 text-coffee-ink" />
+                    <Check className="size-4 text-kofi-ink" />
                     {t.rich(`checks.${i}`, tags)}
                   </li>
                 ))}
               </ul>
 
               <div className="mt-auto pt-10">
-                <Button asChild size="lg" variant="coffee" className="w-full">
-                  <a href={links.buyMeACoffee} target="_blank" rel="noreferrer">
+                <Button asChild size="lg" variant="kofi" className="w-full">
+                  <a href={links.kofi} target="_blank" rel="noreferrer">
                     <Coffee />
                     {t("coffee")}
                   </a>
