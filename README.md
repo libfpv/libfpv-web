@@ -1,6 +1,6 @@
 # libfpv-web
 
-The website for [libfpv](https://github.com/hammerill/libfpv): compatible games, features, docs links and support (Patreon, Ko-fi).
+The website for [libfpv](https://github.com/hammerill/libfpv): compatible games, features, docs links and support.
 
 Next.js 14 (App Router) + Tailwind CSS, same stack and look as hammerill.com.
 
@@ -12,7 +12,7 @@ npm install
 npm run dev      # http://localhost:3000
 ```
 
-- Links (Patreon, Ko-fi, GitHub, docs): `src/config.ts`.
+- Links (GitHub, docs, etc.): `src/config.ts`.
 - Languages: English, French, Ukrainian, with [next-intl](https://next-intl.dev) as on hammerill.com. All text lives in `dicts/<locale>.json` (`<nbsp></nbsp>` is a non-breaking space, `<b>` is bold); the components only hold structure. The URL never carries the locale: the proxy (`src/proxy.ts`, Next.js 16's name for middleware) picks it from the `NEXT_LOCALE` cookie, set by the language switcher in the header, then from `Accept-Language`, and rewrites to `src/app/[locale]` internally. `/fr` and the like redirect to `/` and set the cookie. To add a language: a new `dicts/<locale>.json` and an entry in `src/navigation.ts`.
 - Game pages: `/games` lists them, `/games/<id>` is each game's page (`id` is the mod's code without `-fpv`): downloads, web build, gallery, requirements, keys. Downloads come from the mod's latest GitHub release via `src/lib/releases.ts`; the files are each game's `downloads` in `src/data/games.ts`. Gallery stills go in `public/gallery/<id>/`, listed in the game's `gallery`.
 - Games: `src/data/games.ts` (text in `dicts/*.json` under `gameData.<id>`). Each game's clip lives in `public/games/<media>.{webm,mp4,jpg}`, made from the mod's GIF. Clips are 16:9 unless the game sets `aspect` (RDR2's is `4 / 3`); its page, the games list and the gallery then frame it at that shape, and game cards show it whole:
